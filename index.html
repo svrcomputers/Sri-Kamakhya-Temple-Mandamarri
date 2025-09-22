@@ -83,6 +83,22 @@
             border: 1px solid var(--gold);
         }
         
+ .visitor-counter {
+            color: var(--maroon);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 15px;
+            background-color: rgba(128, 0, 32, 0.1);
+            border-radius: 5px;
+            border: 1px solid var(--maroon);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .visitor-counter i {
+            color: var(--dark-red);
+        }
         /* Navigation - Sticky */
         nav {
             background-color: var(--maroon);
@@ -926,6 +942,11 @@
         </div>
         
         <div class="header-date-time" id="header-date-time">Loading date and time...</div>
+<div class="visitor-counter">
+                <i class="fas fa-users"></i>
+                <span id="visitor-count">Visitors: Loading...</span>
+            </div>
+  </div>
     </div>
     
     <!-- Navigation - Sticky -->
@@ -1215,6 +1236,13 @@
                     </div>
                 </div>
             </div>
+	<center>
+                 <p> <h1>OR </h1></p>
+	<h2> <p> You can Donate to Our Account No<p></h2>
+	<p> Bank Name  :                     </p>
+                 <p> IFCS Code  :                      </p>
+                 <p> Account No :                       </p>
+	</center>
         </section>
         
         <!-- Contact Section -->
@@ -1278,8 +1306,8 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Sri Tri Shakti Astalaxmi Mahankali Devalayam. All rights reserved. <br><b> <b>Designed and Developed by A Sravan (Cell No: 8500172644)</b></p><b><b>
+        <div class="footer-bottom"><br>
+            <p>&copy; 2023 Sri Tri Shakti Astalaxmi Mahankali Devalayam. All rights reserved. <br> Designed by A Sravan (Cell No: 8500172644)</p>
         </div>
     </footer>
     
@@ -1311,6 +1339,19 @@
         
         setInterval(updateDateTime, 1000);
         updateDateTime();
+
+  // Visitor Counter (simulated)
+        function updateVisitorCounter() {
+            // In a real implementation, this would fetch from a server
+            // For demo purposes, we'll simulate a visitor count
+            const baseCount = 12547;
+            const randomIncrement = Math.floor(Math.random() * 10) + 1;
+            const visitorCount = baseCount + randomIncrement;
+            document.getElementById('visitor-count').textContent = `Visitors: ${visitorCount.toLocaleString()}`;
+        }
+        
+        // Update visitor counter on page load
+        updateVisitorCounter();
         
         // Slider Functionality
         let currentSlide = 0;
