@@ -394,7 +394,7 @@
           <button onclick="bookWhatsapp('${escapeHtml(p.service)}')" class="btn-maroon w-full mt-4 py-2 rounded-full">Book via WhatsApp</button>
           ${isAdmin ? `<div class="edit-controls"><button onclick="editPooja(${idx})" class="edit-btn"><i class="fas fa-edit"></i> Edit</button><button onclick="deletePooja(${idx})" class="delete-btn"><i class="fas fa-trash"></i> Delete</button></div>` : ''}
         `;
-        container.appendChild(card);
+        container.appendChild(card); 
       });
       if(isAdmin) {
         const addCard = document.createElement('div');
