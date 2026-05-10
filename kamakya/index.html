@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | Three Shakthipeetam | Mandamarri</title>
-  <meta name="description" content="Three Divine Shakthipeetams - Sri Kamakhya, Sri Lalitha, Sri Shyamal Varahi in Mandamarri, Telangana. Donate via UPI, get receipt on WhatsApp.">
+  <title>Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | Mandamarri</title>
+  <meta name="description" content="Three Divine Shakthipeetams - Sri Kamakhya, Sri Lalitha, Sri Shyamal Varahi in Mandamarri, Telangana. Book pooja, get timings, contact temple head.">
   <meta name="theme-color" content="#6b1a2a">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +16,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,12 +40,27 @@
     .glass-card:hover { border-color: rgba(107, 26, 42, 0.6); transform: translateY(-5px); }
     .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
     .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,240,235,0.5) 0%, rgba(107,26,42,0.25) 100%); z-index: -1; }
-    .floating-om { position: absolute; font-size: 2rem; opacity: 0.12; animation: floatOm 14s infinite linear; pointer-events: none; color: #8b2a3a; }
-    @keyframes floatOm { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.15; } 90% { opacity: 0.15; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
-    .counter-number { font-size: 2.8rem; font-weight: 700; background: linear-gradient(135deg, #6b1a2a, #b8860b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    
+    /* Floating OM Symbols Animation - Restored */
+    .floating-om-symbol {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.12;
+      animation: floatOmSymbol 14s infinite linear;
+      pointer-events: none;
+      color: #8b2a3a;
+      font-family: 'Cinzel', serif;
+      font-weight: bold;
+    }
+    @keyframes floatOmSymbol {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.15; }
+      90% { opacity: 0.15; }
+      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+    
+    .counter-number { font-size: 2.8rem; font-weight: 700; background: linear-gradient(135deg, #6b1a2a, #b8860b); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
     .timeline-dot { width: 14px; height: 14px; background: #b8860b; border-radius: 50%; position: absolute; left: -8px; top: 5px; box-shadow: 0 0 0 4px rgba(184,134,11,0.3); }
-    .swiper-button-next, .swiper-button-prev { color: #8b2a3a !important; }
-    .swiper-pagination-bullet-active { background: #8b2a3a !important; }
     .scroll-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
     .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
     ::-webkit-scrollbar { width: 6px; }
@@ -63,35 +77,52 @@
     .btn-youtube { background: #FF0000; color: white; }
     .audio-btn { position: fixed; bottom: 25px; left: 20px; z-index: 999; background: linear-gradient(135deg, #6b1a2a, #8b2a3a); backdrop-filter: blur(8px); padding: 14px; border-radius: 50%; cursor: pointer; color: #d4af37; transition: all 0.3s ease; border: 1px solid rgba(212,175,55,0.5); }
     .audio-btn:hover { transform: scale(1.08); }
+    .audio-btn.playing { box-shadow: 0 0 15px #d4af37; }
     .hero-om-wrapper { text-align: center; margin-bottom: 1rem; padding: 20px 0; }
-    .hero-om-wrapper i { font-size: 7rem; color: #6b1a2a; text-shadow: 0 0 20px #b8860b, 0 0 40px rgba(184,134,11,0.5); }
-    @media (min-width: 768px) { .hero-om-wrapper i { font-size: 10rem; } }
+    .hero-om-wrapper .om-text-glow {
+      font-size: 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-weight: bold;
+      color: #6b1a2a;
+      text-shadow: 0 0 20px #b8860b, 0 0 40px rgba(184,134,11,0.5);
+      letter-spacing: 4px;
+    }
+    @media (min-width: 768px) { 
+      .hero-om-wrapper .om-text-glow { font-size: 3.5rem; } 
+    }
     .hero-om-glow { display: inline-block; animation: omPulse 2s infinite ease-in-out; }
-    @keyframes omPulse { 0% { text-shadow: 0 0 5px #b8860b; transform: scale(1); } 50% { text-shadow: 0 0 30px #b8860b, 0 0 20px #d4af37; transform: scale(1.05); } 100% { text-shadow: 0 0 5px #b8860b; transform: scale(1); } }
+    @keyframes omPulse { 
+      0% { text-shadow: 0 0 5px #b8860b; transform: scale(1); } 
+      50% { text-shadow: 0 0 30px #b8860b, 0 0 20px #d4af37; transform: scale(1.05); } 
+      100% { text-shadow: 0 0 5px #b8860b; transform: scale(1); } 
+    }
     .toast-notification { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(100px); background: linear-gradient(135deg, #6b1a2a, #8b2a3a); color: #d4af37; padding: 12px 24px; border-radius: 50px; font-weight: 500; z-index: 1000; opacity: 0; transition: all 0.3s ease; pointer-events: none; white-space: nowrap; }
     .toast-notification.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-    .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; display: none; justify-content: center; align-items: center; }
-    .login-overlay.active { display: flex; }
-    .admin-badge { cursor: pointer; }
-    .edit-controls { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
-    .edit-btn { background: #6b1a2a; color: #d4af37; padding: 4px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; border: none; }
-    .edit-btn:hover { background: #8b2a3a; }
-    .delete-btn { background: #8b0000; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; border: none; }
-    .delete-btn:hover { background: #a00000; }
-    .add-card { cursor: pointer; transition: all 0.3s; }
-    .add-card:hover { background: #f0e6d8; transform: scale(1.02); }
+    .square-img { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; border-radius: 28px; transition: transform 0.3s ease; }
+    .square-img:hover { transform: scale(1.02); }
+    .booking-card { transition: all 0.3s; }
+    .booking-card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(107,26,42,0.2); }
+    .datetime-header { font-family: 'Inter', monospace; letter-spacing: 0.5px; background: rgba(107,26,42,0.08); backdrop-filter: blur(4px); border-radius: 60px; padding: 6px 16px; display: inline-block; font-size: 0.85rem; font-weight: 500; }
+    @media (max-width: 640px) { .counter-number { font-size: 2rem; } .datetime-header { font-size: 0.7rem; padding: 4px 12px; } }
     .footer-section { text-align: left; }
     .footer-section ul { padding-left: 0; list-style: none; }
     .footer-section li { margin-bottom: 8px; }
-    .footer-section a { color: #4a0e1a; text-decoration: none; }
+    .footer-section a { color: #4a0e1a; text-decoration: none; transition: color 0.2s; }
     .footer-section a:hover { color: #b8860b; }
+    .devotee-counter-wrapper { display: flex; align-items: baseline; justify-content: center; gap: 4px; }
   </style>
 </head>
 <body>
 
+  <!-- Floating OM Symbols Animation Container -->
   <div id="omParticles"></div>
+  
+  <!-- Audio Button with OM Chanting -->
   <div class="audio-btn" id="audioToggle"><i class="fas fa-om"></i></div>
-  <audio id="bgAudio" loop><source src="https://www.ashram.org/assets/audio/om.mp3" type="audio/mpeg"></audio>
+  <audio id="bgAudio" loop preload="auto">
+    <!-- Pure OM Chanting Audio - Public Domain OM Mantra -->
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_bb2f1b7c2a.mp3" type="audio/mpeg">
+  </audio>
 
   <div class="floating-social">
     <a href="https://wa.me/919618336559?text=Jai%20Mata%20Di!" target="_blank" class="social-btn btn-whatsapp-chat"><i class="fab fa-whatsapp"></i></a>
@@ -101,49 +132,43 @@
 
   <button id="backToTop" class="fixed bottom-6 right-24 z-50 bg-maroon text-white rounded-full p-3 shadow-xl hidden transition-all"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- Admin Login Overlay -->
-  <div id="loginOverlay" class="login-overlay">
-    <div class="glass-card p-8 w-96 text-center">
-      <i class="fas fa-lock text-5xl text-maroon mb-4"></i>
-      <h3 class="text-2xl cinzel mb-4">Admin Login</h3>
-      <input type="password" id="adminPassword" placeholder="Enter Password" class="w-full p-3 rounded-xl border border-maroon/50 mb-4">
-      <button onclick="checkAdminLogin()" class="btn-maroon w-full py-2 rounded-full">Login</button>
-      <p class="text-xs text-maroon-dark mt-3">Default Password: <strong>shakti2025</strong></p>
-    </div>
-  </div>
-
-  <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-lg border-b border-maroon/20 py-3 px-5 shadow-sm">
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-lg border-b border-maroon/20 py-2 px-5 shadow-sm">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3"><i class="fas fa-om text-2xl md:text-3xl text-maroon"></i><span class="cinzel text-lg md:text-xl font-bold gold-gradient hidden md:inline-block">Shakthipeetam</span></div>
-      <div class="hidden md:flex gap-8 text-sm font-medium text-maroon-dark">
-        <a href="#home">Home</a><a href="#about">About</a><a href="#deities">Deities</a><a href="#poojas">Poojas</a><a href="#events">Events</a><a href="#gallery">Gallery</a><a href="#donation">Donate</a><a href="#contact">Contact</a>
-        <span id="adminStatusBadge" class="admin-badge text-gold cursor-pointer" onclick="showAdminLogin()"><i class="fas fa-user-shield"></i> Admin</span>
+      <div class="datetime-header" id="liveDateTime"></div>
+      <div class="hidden md:flex gap-6 text-sm font-medium text-maroon-dark">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#deities">Deities</a><a href="#poojaTimings">Pooja Timings</a><a href="#templeHead">Temple Head</a><a href="#gallery">Gallery</a><a href="#youtubeVideo">Video</a><a href="#bookingSection">Bookings</a><a href="#donation">Donate</a><a href="#contact">Contact</a>
       </div>
       <button id="menuBtn" class="md:hidden text-2xl text-maroon"><i class="fas fa-bars"></i></button>
     </div>
     <div id="mobileMenu" class="hidden md:hidden flex flex-col gap-4 bg-white/98 backdrop-blur-lg p-6 mt-3 rounded-2xl shadow-lg">
-      <a href="#home">Home</a><a href="#about">About</a><a href="#deities">Deities</a><a href="#poojas">Poojas</a><a href="#events">Events</a><a href="#gallery">Gallery</a><a href="#donation">Donate</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#about">About</a><a href="#deities">Deities</a><a href="#poojaTimings">Pooja Timings</a><a href="#templeHead">Temple Head</a><a href="#gallery">Gallery</a><a href="#youtubeVideo">Video</a><a href="#bookingSection">Bookings</a><a href="#donation">Donate</a><a href="#contact">Contact</a>
     </div>
   </nav>
 
   <main>
+    <!-- Hero Section with OM Sri Matre Namaha Text -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <video autoplay muted loop playsinline class="hero-video"><source src="https://cdn.coverr.co/videos/coverr-temple-candles-5781/1080p.mp4" type="video/mp4"></video>
       <div class="hero-overlay"></div>
       <div class="container mx-auto px-6 text-center relative z-10">
-        <div class="hero-om-wrapper"><div class="hero-om-glow"><i class="fas fa-om"></i></div></div>
+        <div class="hero-om-wrapper">
+          <div class="hero-om-glow">
+            <div class="om-text-glow">🕉️ Om Sri Matre Namaha 🕉️</div>
+          </div>
+        </div>
         <h1 class="text-3xl md:text-5xl font-bold maroon-gradient">Sri Kamakhya Lalitha Shyamal Varahi</h1>
         <h2 class="text-3xl md:text-5xl font-bold gold-gradient mt-2">Three Shakthipeetam</h2>
         <p class="text-xl md:text-2xl text-maroon-dark/80 mt-4 max-w-2xl mx-auto">Divine Abode • Mandamarri, Telangana – 504231</p>
         <div class="flex flex-wrap justify-center gap-5 mt-10">
-          <button id="bookPoojaBtn" class="btn-maroon px-8 py-3 rounded-full shadow-lg"><i class="fas fa-hand-sparkles mr-2"></i>Book Pooja</button>
-          <button id="donateNowBtn" class="btn-gold px-8 py-3 rounded-full shadow-lg"><i class="fas fa-donate mr-2"></i>Donate Now</button>
-          <button id="contactTempleBtn" class="border border-maroon px-6 py-3 rounded-full text-maroon font-semibold hover:bg-maroon/10"><i class="fas fa-phone-alt mr-2"></i>Contact</button>
+          <a href="#bookingSection" class="btn-maroon px-8 py-3 rounded-full shadow-lg inline-block"><i class="fas fa-hand-sparkles mr-2"></i>Book Pooja</a>
+          <a href="#donation" class="btn-gold px-8 py-3 rounded-full shadow-lg inline-block"><i class="fas fa-donate mr-2"></i>Donate Now</a>
+          <a href="#contact" class="border border-maroon px-6 py-3 rounded-full text-maroon font-semibold hover:bg-maroon/10 inline-block"><i class="fas fa-phone-alt mr-2"></i>Contact</a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 glass-card p-6 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-20 glass-card p-6 max-w-3xl mx-auto">
           <div><i class="fas fa-clock text-maroon text-3xl"></i><p class="font-bold mt-2">Daily Pooja Timings</p><p class="text-sm">Morning 6:00 AM • Evening 6:30 PM</p></div>
-          <div><i class="fas fa-calendar-alt text-maroon text-3xl"></i><p class="font-bold mt-2">Upcoming Festival</p><p class="text-sm" id="festivalDisplay">Navaratri Starts Oct 3</p></div>
-          <div><i class="fas fa-users text-maroon text-3xl"></i><p class="font-bold mt-2">Devotees</p><p class="text-sm counter-stat" data-target="25000">0+</p></div>
+          <div><i class="fas fa-users text-maroon text-3xl"></i><p class="font-bold mt-2">Devotees Blessed</p><div class="devotee-counter-wrapper"><span class="counter-number" id="devoteeCounter" data-target="25888">0</span><span class="text-maroon text-2xl">+</span></div></div>
         </div>
         <div class="grid grid-cols-3 gap-4 mt-12 max-w-3xl mx-auto text-center">
           <div><div class="counter-number" data-target="108">0</div><p class="text-xs">Years of Legacy</p></div>
@@ -153,10 +178,11 @@
       </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="py-24 px-6 bg-maroon-soft">
       <div class="max-w-7xl mx-auto"><h2 class="text-4xl md:text-5xl cinzel text-center maroon-gradient mb-16 scroll-reveal">Sacred Three Shakthipeetam</h2>
         <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="scroll-reveal"><img src="https://images.unsplash.com/photo-1585129801095-6e5e47d48e62?w=600" class="rounded-2xl shadow-2xl"></div>
+          <div class="scroll-reveal"><img src="kamakya/images/1.webp?w=600" class="rounded-2xl shadow-2xl w-full object-cover"></div>
           <div class="scroll-reveal space-y-5"><p class="text-maroon-dark leading-relaxed">Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam in Mandamarri is a radiant Trishakti center. Three divine goddesses grace this sacred land: Kamakhya (desire), Lalitha (beauty), and Varahi (command).</p>
           <div class="space-y-4 mt-6 relative pl-6 border-l-2 border-maroon"><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Kamakhya Devi</span><p class="text-sm">Yoni Peetha, bestows fertility and moksha</p></div><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Lalitha Devi</span><p class="text-sm">Mahatripurasundari, Sri Chakra worship</p></div><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Shyamal Varahi</span><p class="text-sm">Boar-faced deity, removes obstacles</p></div></div>
           <p class="italic text-maroon border-t border-maroon/30 pt-4">"Revive ancient Shakti traditions" – Founder Sri Yogi Rajanatha</p></div>
@@ -164,116 +190,169 @@
       </div>
     </section>
 
+    <!-- Deities Section -->
     <section id="deities" class="py-24 px-6 bg-white">
       <div class="max-w-7xl mx-auto"><h2 class="text-4xl cinzel text-center maroon-gradient mb-14 scroll-reveal">The Divine Three Shakthipeetam</h2>
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="glass-card p-6 rounded-3xl text-center transition scroll-reveal shadow-md"><img src="G:\My Projects\kamakya temple images\Lalitha Devi.webp?w=200" class="w-40 h-40 rounded-full mx-auto object-cover border-4 border-maroon"><h3 class="text-2xl cinzel mt-4 text-maroon">Sri Lalitha</h3><p class="text-sm">Primordial Shakti Peetham</p><button onclick="showDeityModal('Kamakhya Devi represents creation. Worshipping her brings spiritual awakening.')" class="mt-3 text-maroon underline">Read More</button></div>
-          <div class="glass-card p-6 rounded-3xl text-center transition scroll-reveal shadow-md"><img src="G:\My Projects\kamakya temple images\Shyamala Devi.webp?w=200" class="w-40 h-40 rounded-full mx-auto object-cover border-4 border-maroon"><h3 class="text-2xl cinzel mt-4 text-maroon">Shyamala</h3><p class="text-sm">Mahatripurasundari Peetham</p><button onclick="showDeityModal('Lalitha Devi grants prosperity, desires, and liberation.')" class="mt-3 text-maroon underline">Read More</button></div>
-          <div class="glass-card p-6 rounded-3xl text-center transition scroll-reveal shadow-md"><img src="G:\My Projects\kamakya temple images\varahi Devi1.webp?w=200" class="w-40 h-40 rounded-full mx-auto object-cover border-4 border-maroon"><h3 class="text-2xl cinzel mt-4 text-maroon"> Varahi</h3><p class="text-sm">Varahi Shakthipeetam</p><button onclick="showDeityModal('Shyamal Varahi removes fear and grants protection.')" class="mt-3 text-maroon underline">Read More</button></div>
+          <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
+            <img src="kamakya/images/Lalitha Devi.webp?w=500" class="square-img shadow-lg">
+            <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Kamakhya</h3>
+            <p class="text-sm px-2">Yoni Peetha, bestows fertility & moksha</p>
+          </div>
+          <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
+            <img src="kamakya/images/shyamala Devi.webp?w=500" class="square-img shadow-lg">
+            <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Lalitha</h3>
+            <p class="text-sm px-2">Mahatripurasundari, Sri Chakra worship</p>
+          </div>
+          <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
+            <img src=""kamakya/images/varahi Devi1.webp?w=500" class="square-img shadow-lg">
+            <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Shyamal Varahi</h3>
+            <p class="text-sm px-2">Boar-faced deity, removes obstacles</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- POOJAS SECTION with Admin Edit -->
-    <section id="poojas" class="py-24 px-6 bg-maroon-soft">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl cinzel text-center maroon-gradient mb-6 scroll-reveal">Poojas & Services</h2>
-        <div id="adminPoojaIndicator" class="text-center mb-4"></div>
-        <div id="poojasContainer" class="grid md:grid-cols-3 gap-8"></div>
-      </div>
-    </section>
-
-    <!-- Events Section with Admin Edit -->
-    <section id="events" class="py-24 px-6 bg-white">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl cinzel text-center maroon-gradient mb-6">Sacred Festivals</h2>
-        <div id="adminFestivalIndicator" class="text-center mb-4"></div>
-        <div class="swiper eventSwiper overflow-hidden pb-12">
-          <div class="swiper-wrapper" id="festivalsContainer"></div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
+    <!-- Pooja Timings Section -->
+    <section id="poojaTimings" class="py-24 px-6 bg-maroon-soft">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl cinzel text-center maroon-gradient mb-10 scroll-reveal">Pooja Timings</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="glass-card p-8 text-center scroll-reveal">
+            <i class="fas fa-sun text-4xl text-maroon"></i>
+            <h3 class="text-2xl font-bold text-maroon mt-3">Morning Pooja</h3>
+            <div class="border-t border-maroon/20 my-4"></div>
+            <ul class="space-y-3 text-maroon-dark">
+              <li><span class="font-semibold">6:00 AM</span> – Suprabhatam & Mangala Aarti</li>
+              <li><span class="font-semibold">7:30 AM</span> – Abhishekam (Kamakhya Devi)</li>
+              <li><span class="font-semibold">9:00 AM</span> – Lalitha Sahasranamam</li>
+              <li><span class="font-semibold">10:30 AM</span> – Rajabhoga Naivedyam</li>
+            </ul>
+          </div>
+          <div class="glass-card p-8 text-center scroll-reveal">
+            <i class="fas fa-moon text-4xl text-maroon"></i>
+            <h3 class="text-2xl font-bold text-maroon mt-3">Evening Pooja</h3>
+            <div class="border-t border-maroon/20 my-4"></div>
+            <ul class="space-y-3 text-maroon-dark">
+              <li><span class="font-semibold">5:00 PM</span> – Dhoop Aarti & Deeparadhana</li>
+              <li><span class="font-semibold">6:30 PM</span> – Sandhya Vandanam & Shakti Homam</li>
+              <li><span class="font-semibold">7:45 PM</span> – Pradosha Pooja (special)</li>
+              <li><span class="font-semibold">8:30 PM</span> – Shej Aarti & Shayanotsavam</li>
+            </ul>
+          </div>
+        </div>
+        <div class="glass-card p-6 mt-6 text-center scroll-reveal">
+          <i class="fas fa-calendar-week text-maroon text-2xl"></i>
+          <p class="font-medium mt-2">📿 *Special Poojas every Amavasya, Pournami & Fridays*</p>
         </div>
       </div>
     </section>
 
-    <section id="gallery" class="py-24 px-6 bg-maroon-soft">
+    <!-- Temple Head Section -->
+    <section id="templeHead" class="py-24 px-6 bg-white">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl cinzel text-center maroon-gradient mb-12 scroll-reveal">Temple Head</h2>
+        <div class="flex flex-col md:flex-row items-center gap-12 glass-card p-8 rounded-3xl scroll-reveal">
+          <div class="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-gold shadow-2xl">
+            <img src="kamakya/images/sathish.png" class="w-full h-full object-cover" alt="Temple Head">
+          </div>
+          <div class="text-center md:text-left">
+            <h3 class="text-3xl cinzel text-maroon">Sri Yogi Rajanatha Sastry</h3>
+            <p class="text-gold font-semibold text-xl mt-1">Chief Priest & Spiritual Director</p>
+            <div class="w-20 h-1 bg-gold my-4 mx-auto md:mx-0"></div>
+            <p class="text-maroon-dark leading-relaxed max-w-lg">With over 30 years of devotion and Vedic scholarship, Sri Yogi Rajanatha revived the Three Shakthipeetam tradition in Mandamarri. He leads the Sri Vidya upasana, conducts powerful homams and guides countless devotees on the path of Shakti worship.</p>
+            <div class="flex gap-4 mt-6 justify-center md:justify-start">
+              <span class="bg-maroon-soft px-3 py-1 rounded-full text-sm"><i class="fas fa-om text-maroon"></i> Sri Chakra Expert</span>
+              <span class="bg-maroon-soft px-3 py-1 rounded-full text-sm"><i class="fas fa-hand-sparkles"></i> Varahi Upasaka</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+   <section id="gallery" class="py-24 px-6 bg-maroon-soft">
       <div class="max-w-7xl mx-auto"><h2 class="text-4xl cinzel text-center maroon-gradient mb-12">Gallery</h2>
         <div class="columns-1 sm:columns-2 md:columns-3 gap-5 space-y-5">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal7.webp?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal1.webp?w=400" data-full="https://images.unsplash.com/photo-1599566746534-8e678cd4fa27?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal2.webp?w=400" data-full="https://images.unsplash.com/photo-1603398938378-e54eab4463aa?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal3.webp?w=400" data-full="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal4.webp?w=400" data-full="https://images.unsplash.com/photo-1582653291997-079a1b04b6d3?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal5.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
 
-<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal6.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/guru.png?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
 
-<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal8.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal7.webp?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal1.webp?w=400" data-full="https://images.unsplash.com/photo-1599566746534-8e678cd4fa27?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal2.webp?w=400" data-full="https://images.unsplash.com/photo-1603398938378-e54eab4463aa?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal3.webp?w=400" data-full="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal4.webp?w=400" data-full="https://images.unsplash.com/photo-1582653291997-079a1b04b6d3?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal5.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
 
-<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal9.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal6.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
 
-<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="G:\My Projects\kamakya temple images\gal10.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal8.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+
+<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal9.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+
+<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal10.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+
         </div>
       </div>
     </section>
 
+    <!-- YouTube Video Section -->
+    <section id="youtubeVideo" class="py-24 px-6 bg-white">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl cinzel text-center maroon-gradient mb-8 scroll-reveal">Divine Temple Video</h2>
+        <div class="scroll-reveal shadow-2xl rounded-3xl overflow-hidden">
+          <div class="relative pb-[56.25%] h-0">
+            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/watch?v=jH4iPkIklSo" title="Temple Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <p class="mt-5 text-maroon-dark text-lg font-medium">Temple Video</p>
+        <p class="text-maroon-dark/70 mt-2">Experience the divine vibrations and grand celebrations at our temple.</p>
+      </div>
+    </section>
+
+    <!-- Booking & Appointment Section -->
+    <section id="bookingSection" class="py-24 px-6 bg-maroon-soft">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl cinzel text-center maroon-gradient mb-6 scroll-reveal">Book Pooja / Astrology Appointment</h2>
+        <p class="text-center text-maroon-dark mb-12">Connect instantly via WhatsApp or Call to reserve your slot</p>
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="glass-card p-8 text-center booking-card scroll-reveal">
+            <i class="fab fa-whatsapp text-6xl text-green-600 mb-4"></i>
+            <h3 class="text-2xl font-bold text-maroon">WhatsApp Booking</h3>
+            <p class="text-maroon-dark mt-2">Share your pooja requirement, date & timings. Our team will confirm immediately.</p>
+            <a href="https://wa.me/919618336559?text=Namaskaram%2C%20I%20want%20to%20book%20a%20pooja%20or%20astrology%20appointment%20at%20Three%20Shakthipeetam" target="_blank" class="btn-gold mt-6 inline-block px-8 py-3 rounded-full w-full md:w-auto"><i class="fab fa-whatsapp mr-2"></i> Book via WhatsApp</a>
+          </div>
+          <div class="glass-card p-8 text-center booking-card scroll-reveal">
+            <i class="fas fa-phone-alt text-6xl text-maroon mb-4"></i>
+            <h3 class="text-2xl font-bold text-maroon">Call to Book</h3>
+            <p class="text-maroon-dark mt-2">Speak directly with our priest or coordinator for pooja slots & astrology readings.</p>
+            <a href="tel:+919618336559" class="btn-maroon mt-6 inline-block px-8 py-3 rounded-full w-full md:w-auto"><i class="fas fa-phone-alt mr-2"></i> Call Now:+91 9618336559</a>
+            <p class="text-xs text-maroon-dark mt-3">Available 8 AM – 8 PM</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donation Section -->
     <section id="donation" class="py-24 px-6 bg-white">
       <div class="max-w-5xl mx-auto glass-card p-8 rounded-3xl">
         <h2 class="text-3xl cinzel text-center maroon-gradient">Support the Sacred Mission</h2>
         <p class="text-center text-maroon-dark mt-2">🙏 Donate via UPI • Get Receipt on WhatsApp</p>
-        <div class="text-center mb-6">
-          <button onclick="downloadDonationsPDF()" class="bg-maroon text-white px-6 py-2 rounded-full text-sm shadow-md"><i class="fas fa-file-pdf mr-2"></i>📄 Temple Admin: Download All Donations as PDF</button>
-        </div>
-        <div class="grid md:grid-cols-2 gap-10 mt-6">
-          <div class="text-center">
-            <i class="fas fa-qrcode text-6xl text-maroon"></i>
-            <h3 class="text-xl mt-2 text-maroon">Scan & Pay (UPI)</h3>
-            <div class="bg-white p-4 rounded-xl inline-block mt-3 shadow">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" class="w-48 mx-auto" alt="UPI QR">
-            </div>
-            <p class="mt-3 font-mono font-bold text-maroon">UPI ID: <span class="bg-maroon-soft px-2 py-1 rounded">temple.shakti@okhdfcbank</span></p>
-            <div class="mt-4 p-3 bg-maroon-soft rounded-xl">
-              <p class="text-sm font-bold">Bank Details</p>
-              <p class="text-xs">A/C: Sri Shakthipeetam Trust</p>
-              <p class="text-xs">A/C No: 34567890123</p>
-              <p class="text-xs">IFSC: SBIN001234</p>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-xl text-maroon text-center md:text-left">Get Receipt on WhatsApp</h3>
-            <p class="text-xs text-maroon-dark mb-3">Payment ayyaka, ee form fill cheyandi. Receipt WhatsApp ki pamputaaru.</p>
-            <input type="text" id="donorName" placeholder="Full Name *" class="w-full p-3 rounded-xl bg-white border border-maroon/50 mt-2">
-            <input type="tel" id="donorWhatsApp" placeholder="WhatsApp Number (with +91) *" class="w-full p-3 rounded-xl bg-white border border-maroon/50 mt-3" value="+91">
-            <input type="number" id="donationAmount" placeholder="Amount Donated (₹) *" class="w-full p-3 rounded-xl bg-white border border-maroon/50 mt-3">
-            <select id="donationType" class="w-full p-3 rounded-xl bg-white border border-maroon/50 mt-3">
-              <option value="Annadanam">Annadanam (Food Donation)</option>
-              <option value="Temple Renovation">Temple Renovation</option>
-              <option value="Daily Pooja Fund">Daily Pooja Fund</option>
-              <option value="General Donation">General Donation</option>
-            </select>
-            <input type="text" id="transactionId" placeholder="UPI Transaction ID / Reference Number *" class="w-full p-3 rounded-xl bg-white border border-maroon/50 mt-3">
-            <button onclick="sendWhatsAppReceipt()" class="btn-maroon w-full mt-5 py-2 rounded-full font-bold"><i class="fab fa-whatsapp mr-2"></i>Submit & Get Receipt on WhatsApp</button>
-          </div>
+        <div class="grid md:grid-cols-2 gap-8 mt-6">
+          <div class="text-center"><i class="fas fa-qrcode text-6xl text-maroon"></i><h3 class="text-xl mt-2">Scan & Pay (UPI)</h3><div class="bg-white p-4 rounded-xl inline-block mt-3 shadow"><img src="kamakya/images/qrcode.png " class="w-48 mx-auto"></div><p class="mt-3 font-mono text-maroon">UPI: Temple UPI ID</p></div>
+          <div><input type="text" id="donorName" placeholder="Full Name *" class="w-full p-3 rounded-xl border border-maroon/50 mt-2"><input type="tel" id="donorWhatsApp" placeholder="WhatsApp Number *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><input type="number" id="donationAmount" placeholder="Amount (₹) *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><select id="donationType" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><option>Annadanam</option><option>Temple Renovation</option></select><input type="text" id="transactionId" placeholder="Transaction ID *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><button onclick="sendWhatsAppReceipt()" class="btn-maroon w-full mt-5 py-2 rounded-full"><i class="fab fa-whatsapp mr-2"></i>Submit & Get Receipt</button></div>
         </div>
       </div>
     </section>
 
-    <section class="py-20 px-6 bg-maroon-soft">
-      <div class="max-w-4xl mx-auto"><h2 class="text-3xl cinzel text-center maroon-gradient">Devotee Blessings</h2>
-        <div class="swiper testiSwiper mt-10 pb-10"><div class="swiper-wrapper">
-          <div class="swiper-slide"><div class="glass-card p-8 text-center"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-3">“Three Shakthipeetam - an unparalleled spiritual experience!”</p><h4 class="font-bold mt-3">− Sandhya R.</h4></div></div>
-          <div class="swiper-slide"><div class="glass-card p-8 text-center"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><p class="italic mt-3">“Divine energy, clean premises, and sublime priests. Jai Mata Di!”</p><h4 class="font-bold mt-3">− Vikram S.</h4></div></div>
-        </div><div class="swiper-pagination"></div></div></div>
-    </section>
-
-    <section id="contact" class="py-24 px-6 bg-white">
+    <section id="contact" class="py-24 px-6 bg-maroon-soft">
       <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-        <div><h2 class="text-3xl cinzel maroon-gradient">Visit Three Shakthipeetam</h2><p class="mt-4 flex gap-2"><i class="fas fa-map-marker-alt text-maroon mt-1"></i> Sri Kamakhya Lalitha, Shyamal Varahi Shakthipeetam, Mandamarri, Telangana – 504231</p><iframe class="w-full h-64 rounded-xl mt-4" src="https://maps.google.com/maps?q=Mandamarri,+Telangana&z=14&output=embed" allowfullscreen></iframe><div class="flex gap-4 mt-6"><a href="tel:+919876543210" class="btn-maroon px-5 py-2 rounded-full"><i class="fas fa-phone-alt"></i> Call</a><a href="https://wa.me/919876543210" class="border border-maroon px-5 py-2 rounded-full text-maroon font-semibold"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div>
-        <div class="glass-card p-6 rounded-2xl"><h3 class="text-2xl cinzel text-maroon">Temple Timings</h3><p class="mt-2">Mon-Sun: 8:00 AM – 12:00 PM, 4:00 PM – 8:00 PM</p><hr class="my-4"><i class="fas fa-envelope text-maroon"></i> temple@shakthipeetam.org</div>
+        <div><h2 class="text-3xl cinzel maroon-gradient">Visit Shakthipeetam</h2><p class="mt-4"><i class="fas fa-map-marker-alt text-maroon"></i> Mandamarri, Telangana – 504231</p><iframe class="w-full h-64 rounded-xl mt-4" src="https://maps.google.com/maps?q=Mandamarri,+Telangana&z=14&output=embed" allowfullscreen></iframe><div class="flex gap-4 mt-6"><a href="tel:+919618336559" class="btn-maroon px-5 py-2 rounded-full"><i class="fas fa-phone-alt"></i> Call</a><a href="https://wa.me/919618336559" class="border border-maroon px-5 py-2 rounded-full text-maroon"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div>
+        <div class="glass-card p-6"><h3 class="text-2xl cinzel text-maroon">Temple Timings</h3><p>Mon-Sun: 6:00 AM – 12:00 PM, 4:00 PM – 8:00 PM</p><hr class="my-4"><i class="fas fa-envelope text-maroon"></i> temple@shakthipeetam.org</div>
       </div>
     </section>
 
-    <!-- Footer with Left Alignment -->
+    <!-- Footer -->
     <footer class="bg-maroon-soft py-12 border-t border-maroon/30">
       <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-8">
         <div class="footer-section">
@@ -284,351 +363,158 @@
         <div class="footer-section">
           <h3 class="font-bold text-maroon mb-3">Quick Links</h3>
           <ul class="text-sm text-maroon-dark">
-            <li><a href="#home" class="hover:text-gold">Home</a></li>
-            <li><a href="#about" class="hover:text-gold">About Temple</a></li>
-            <li><a href="#deities" class="hover:text-gold">Deities</a></li>
-            <li><a href="#poojas" class="hover:text-gold">Poojas & Services</a></li>
-            <li><a href="#events" class="hover:text-gold">Festivals</a></li>
-            <li><a href="#gallery" class="hover:text-gold">Gallery</a></li>
-            <li><a href="#donation" class="hover:text-gold">Donate</a></li>
-            <li><a href="#contact" class="hover:text-gold">Contact</a></li>
+            <li><a href="#home">Home</a></li><li><a href="#about">About Temple</a></li><li><a href="#deities">Deities</a></li><li><a href="#poojaTimings">Pooja Timings</a></li><li><a href="#templeHead">Temple Head</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#donation">Donate</a></li><li><a href="#contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-section">
           <h3 class="font-bold text-maroon mb-3">Contact Info</h3>
-          <ul class="text-sm text-maroon-dark">
-            <li><i class="fas fa-phone-alt text-maroon w-5"></i> <a href="tel:">+91 9618336559</a></li>
-            <li><i class="fab fa-whatsapp text-maroon w-5"></i> <a href="https://wa.me/919618336559">WhatsApp Chat</a></li>
-            <li><i class="fas fa-envelope text-maroon w-5"></i> temple@shakthipeetam.org</li>
-         
-               </ul>
+          <ul class="text-sm text-maroon-dark"><li><i class="fas fa-phone-alt text-maroon w-5"></i> <a href="tel:+919618336559">+91 9618336559</a></li><li><i class="fab fa-whatsapp text-maroon w-5"></i> <a href="https://wa.me/919618336559">WhatsApp Chat</a></li><li><i class="fas fa-envelope text-maroon w-5"></i> temple@shakthipeetam.org</li></ul>
         </div>
-        <div class="footer-section">
-          <h3 class="font-bold text-maroon mb-3">Temple Timings</h3>
-          <p class="text-sm text-maroon-dark">Morning: 6:00 AM - 12:00 PM</p>
-          <p class="text-sm text-maroon-dark">Evening: 4:00 PM - 8:00 PM</p>
-          <p class="text-sm text-maroon-dark mt-2">All days open</p>
-        </div>
+        <div class="footer-section"><h3 class="font-bold text-maroon mb-3">Temple Timings</h3><p class="text-sm text-maroon-dark">Morning: 6:00 AM - 12:00 PM</p><p class="text-sm text-maroon-dark">Evening: 4:00 PM - 8:00 PM</p><p class="text-sm text-maroon-dark mt-2">All days open</p></div>
       </div>
-      <div class="text-center text-xs text-maroon-dark mt-8 pt-4 border-t border-maroon/20">
-        <p>© 2025 Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | All Rights Reserved | Designed with Divine Grace</p>
-      </div>
+      <div class="text-center text-xs text-maroon-dark mt-8 pt-4 border-t border-maroon/20"><p>© 2025 Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | All Rights Reserved</p></div>
     </footer>
   </main>
 
   <div id="lightbox" class="lightbox"><img id="lightboxImg" src=""><span class="absolute top-5 right-8 text-4xl text-white cursor-pointer">&times;</span></div>
-  <div id="deityModal" class="fixed inset-0 bg-black/80 backdrop-blur hidden justify-center items-center z-50"><div class="glass-card p-6 max-w-md"><p id="modalText"></p><button onclick="closeModal()" class="mt-4 btn-maroon px-4 py-1 rounded-full">Close</button></div></div>
   <div id="toastMsg" class="toast-notification"></div>
 
   <script>
-    // Admin State
-    let isAdmin = false;
-    
-    // Poojas Data (Editable by Admin)
-    let poojas = [
-      { name: "Daily Pooja & Archana", icon: "fas fa-fire-alt", price: "₹251", desc: "Morning Abhishekam, Evening Aarti", service: "Daily Pooja" },
-      { name: "Sri Chakra Homam", icon: "fas fa-star-and-crescent", price: "₹1100", desc: "For prosperity & success", service: "Sri Chakra Homam" },
-      { name: "Lalitha Sahasranamam", icon: "fas fa-leaf", price: "₹501", desc: "Group Parayanam / Individual", service: "Lalitha Sahasranamam" }
-    ];
-    
-    // Festivals Data (Editable by Admin)
-    let festivals = [
-      { name: "🌺 Navaratri Mahotsavam", date: "2025-10-03", desc: "Grand Chandi Yajna" },
-      { name: "🐗 Varahi Ashtami", date: "2025-06-15", desc: "Special Pooja" },
-      { name: "📖 Lalitha Sahasranama Parayanam", date: "2025-05-22", desc: "Full Moon Day" }
-    ];
-    
-    // Load saved data from localStorage
-    function loadSavedData() {
-      const savedPoojas = localStorage.getItem('templePoojas');
-      if(savedPoojas) poojas = JSON.parse(savedPoojas);
-      const savedFestivals = localStorage.getItem('templeFestivals');
-      if(savedFestivals) festivals = JSON.parse(savedFestivals);
-    }
-    
-    function savePoojas() { localStorage.setItem('templePoojas', JSON.stringify(poojas)); }
-    function saveFestivals() { localStorage.setItem('templeFestivals', JSON.stringify(festivals)); }
-    
-    // Admin Login/Logout
-    function showAdminLogin() { document.getElementById('loginOverlay').classList.add('active'); }
-    
-    function checkAdminLogin() {
-      const pwd = document.getElementById('adminPassword').value;
-      if(pwd === "shakti2025") {
-        isAdmin = true;
-        document.getElementById('loginOverlay').classList.remove('active');
-        document.getElementById('adminStatusBadge').innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
-        document.getElementById('adminStatusBadge').onclick = adminLogout;
-        document.getElementById('adminPoojaIndicator').innerHTML = '<span class="text-gold bg-maroon/20 px-4 py-1 rounded-full text-sm"><i class="fas fa-edit"></i> Admin Mode: You can Add/Edit/Delete Poojas</span>';
-        document.getElementById('adminFestivalIndicator').innerHTML = '<span class="text-gold bg-maroon/20 px-4 py-1 rounded-full text-sm"><i class="fas fa-edit"></i> Admin Mode: You can Add/Edit/Delete Festivals</span>';
-        showToast("Admin Login Successful! You can now edit Poojas and Festivals.");
-        loadPoojas();
-        loadFestivals();
-      } else { alert("Incorrect Password"); }
-    }
-    
-    function adminLogout() {
-      isAdmin = false;
-      document.getElementById('adminStatusBadge').innerHTML = '<i class="fas fa-user-shield"></i> Admin';
-      document.getElementById('adminStatusBadge').onclick = showAdminLogin;
-      document.getElementById('adminPoojaIndicator').innerHTML = '';
-      document.getElementById('adminFestivalIndicator').innerHTML = '';
-      showToast("Logged out from Admin Mode");
-      loadPoojas();
-      loadFestivals();
-    }
-    
-    // Pooja Functions
-    function loadPoojas() {
-      const container = document.getElementById('poojasContainer');
+    // Floating OM Symbols Generator
+    function createFloatingOms() {
+      const container = document.getElementById('omParticles');
       if(!container) return;
-      container.innerHTML = '';
-      poojas.forEach((p, idx) => {
-        const card = document.createElement('div');
-        card.className = 'glass-card p-6 rounded-2xl scroll-reveal shadow-sm';
-        card.innerHTML = `
-          <i class="${p.icon} text-4xl text-maroon"></i>
-          <h3 class="text-2xl mt-3 text-maroon">${escapeHtml(p.name)}</h3>
-          <p class="text-maroon-dark">${escapeHtml(p.desc)}</p>
-          <p class="text-maroon font-bold mt-2">${escapeHtml(p.price)}</p>
-          <button onclick="bookWhatsapp('${escapeHtml(p.service)}')" class="btn-maroon w-full mt-4 py-2 rounded-full">Book via WhatsApp</button>
-          ${isAdmin ? `<div class="edit-controls"><button onclick="editPooja(${idx})" class="edit-btn"><i class="fas fa-edit"></i> Edit</button><button onclick="deletePooja(${idx})" class="delete-btn"><i class="fas fa-trash"></i> Delete</button></div>` : ''}
-        `;
-        container.appendChild(card);
-      });
-      if(isAdmin) {
-        const addCard = document.createElement('div');
-        addCard.className = 'glass-card p-6 rounded-2xl scroll-reveal shadow-sm add-card flex flex-col items-center justify-center min-h-[320px]';
-        addCard.innerHTML = `<i class="fas fa-plus-circle text-5xl text-maroon mb-3"></i><p class="text-maroon font-bold text-lg">Add New Pooja</p><p class="text-xs text-maroon-dark mt-2">Click to add service</p>`;
-        addCard.onclick = addNewPooja;
-        container.appendChild(addCard);
+      const symbols = ['🕉️', 'ॐ', 'OM', '🕉️'];
+      for(let i=0; i<35; i++){
+        let om = document.createElement('div');
+        om.className = 'floating-om-symbol';
+        om.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+        om.style.left = Math.random() * 100 + '%';
+        om.style.fontSize = (Math.random() * 35 + 15) + 'px';
+        om.style.animationDuration = (Math.random() * 15 + 8) + 's';
+        om.style.animationDelay = (Math.random() * 10) + 's';
+        om.style.opacity = (Math.random() * 0.15 + 0.05);
+        container.appendChild(om);
       }
     }
-    
-    function escapeHtml(str) {
-      if(!str) return '';
-      return str.replace(/[&<>]/g, function(m) {
-        if(m === '&') return '&amp;';
-        if(m === '<') return '&lt;';
-        if(m === '>') return '&gt;';
-        return m;
+    createFloatingOms();
+
+    // Real-time Date & Time
+    function updateDateTime() {
+      const now = new Date();
+      const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      document.getElementById('liveDateTime').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> ${now.toLocaleString('en-IN', options)}`;
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // Counter Animation Function - Fixed for Devotee Counter
+    function animateCounter(element, target) {
+      let current = 0;
+      const increment = Math.ceil(target / 80);
+      const updateCounter = () => {
+        current += increment;
+        if(current < target) {
+          element.innerText = current;
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.innerText = target;
+        }
+      };
+      updateCounter();
+    }
+
+    // Initialize all counters when in viewport
+    function initCounters() {
+      const counterElements = document.querySelectorAll('.counter-number');
+      counterElements.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'), 10);
+        if(target && !counter.hasAttribute('data-animated')) {
+          counter.setAttribute('data-animated', 'true');
+          animateCounter(counter, target);
+        }
       });
     }
-    
-    function addNewPooja() {
-      const name = prompt("Enter Pooja/Service Name:");
-      if(!name || name.trim() === "") { showToast("Pooja name is required!"); return; }
-      const price = prompt("Enter Price (e.g., ₹501):");
-      const desc = prompt("Enter Description:");
-      const iconList = ["fas fa-fire-alt", "fas fa-star-and-crescent", "fas fa-leaf", "fas fa-pray", "fas fa-hands", "fas fa-om", "fas fa-candle", "fas fa-lotus"];
-      const randomIcon = iconList[Math.floor(Math.random() * iconList.length)];
-      poojas.push({ 
-        name: name.trim(), 
-        icon: randomIcon, 
-        price: price || "Contact", 
-        desc: desc || "Divine Service", 
-        service: name.trim() 
+
+    // Trigger counters when section comes into view
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          initCounters();
+          counterObserver.unobserve(entry.target);
+        }
       });
-      savePoojas();
-      loadPoojas();
-      showToast("Pooja added successfully!");
-    }
+    }, { threshold: 0.3 });
     
-    function editPooja(idx) {
-      const name = prompt("Edit Pooja Name:", poojas[idx].name);
-      if(name && name.trim()) poojas[idx].name = name.trim();
-      const price = prompt("Edit Price:", poojas[idx].price);
-      if(price && price.trim()) poojas[idx].price = price.trim();
-      const desc = prompt("Edit Description:", poojas[idx].desc);
-      if(desc && desc.trim()) poojas[idx].desc = desc.trim();
-      savePoojas();
-      loadPoojas();
-      showToast("Pooja updated successfully!");
-    }
+    const heroSection = document.querySelector('#home');
+    if(heroSection) counterObserver.observe(heroSection);
     
-    function deletePooja(idx) {
-      if(confirm("Are you sure you want to remove this pooja/service?")) {
-        poojas.splice(idx, 1);
-        savePoojas();
-        loadPoojas();
-        showToast("Pooja removed successfully");
-      }
-    }
-    
-    // Festival Functions
-    function loadFestivals() {
-      const container = document.getElementById('festivalsContainer');
-      if(!container) return;
-      container.innerHTML = '';
-      festivals.forEach((f, idx) => {
-        const swiperSlide = document.createElement('div');
-        swiperSlide.className = 'swiper-slide';
-        swiperSlide.innerHTML = `
-          <div class="glass-card p-6 text-center">
-            <i class="fas fa-calendar-alt text-5xl text-maroon"></i>
-            <h3 class="text-xl mt-3 text-maroon">${escapeHtml(f.name)}</h3>
-            <p class="text-maroon-dark">${escapeHtml(f.desc)}</p>
-            <div class="countdown-timer text-maroon font-bold mt-2" data-date="${f.date}T00:00:00"></div>
-            ${isAdmin ? `<div class="edit-controls"><button onclick="editFestival(${idx})" class="edit-btn"><i class="fas fa-edit"></i> Edit</button><button onclick="deleteFestival(${idx})" class="delete-btn"><i class="fas fa-trash"></i> Remove</button></div>` : ''}
-          </div>
-        `;
-        container.appendChild(swiperSlide);
-      });
-      if(isAdmin) {
-        const addSlide = document.createElement('div');
-        addSlide.className = 'swiper-slide';
-        addSlide.innerHTML = `<div class="glass-card p-6 text-center add-card cursor-pointer flex flex-col items-center justify-center min-h-[280px]" onclick="addNewFestival()"><i class="fas fa-plus-circle text-5xl text-maroon mb-3"></i><p class="font-bold text-maroon">Add New Festival</p><p class="text-xs text-maroon-dark mt-2">Click to add</p></div>`;
-        container.appendChild(addSlide);
-      }
-      updateCountdowns();
-      if(window.eventSwiper) window.eventSwiper.update();
-      if(festivals[0]) document.getElementById('festivalDisplay').innerHTML = festivals[0].name + " Starts " + new Date(festivals[0].date).toLocaleDateString('en-IN');
-    }
-    
-    function addNewFestival() {
-      const name = prompt("Enter Festival Name:");
-      if(!name || name.trim() === "") { showToast("Festival name is required!"); return; }
-      const date = prompt("Enter Date (YYYY-MM-DD):");
-      if(!date) { showToast("Date is required!"); return; }
-      const desc = prompt("Enter Description:");
-      festivals.push({ name: name.trim(), date: date, desc: desc || "Sacred Festival" });
-      saveFestivals();
-      loadFestivals();
-      showToast("Festival added successfully!");
-    }
-    
-    function editFestival(idx) {
-      const name = prompt("Edit Festival Name:", festivals[idx].name);
-      if(name && name.trim()) festivals[idx].name = name.trim();
-      const date = prompt("Edit Date (YYYY-MM-DD):", festivals[idx].date);
-      if(date && date.trim()) festivals[idx].date = date.trim();
-      const desc = prompt("Edit Description:", festivals[idx].desc);
-      if(desc && desc.trim()) festivals[idx].desc = desc.trim();
-      saveFestivals();
-      loadFestivals();
-      showToast("Festival updated successfully!");
-    }
-    
-    function deleteFestival(idx) {
-      if(confirm("Are you sure you want to remove this festival?")) {
-        festivals.splice(idx, 1);
-        saveFestivals();
-        loadFestivals();
-        showToast("Festival removed successfully");
-      }
-    }
-    
-    // Helper Functions
-    function showToast(msg) { 
-      const toast = document.getElementById('toastMsg'); 
-      toast.textContent = msg; 
-      toast.classList.add('show'); 
-      setTimeout(() => toast.classList.remove('show'), 4000); 
-    }
-    
-    function updateCountdowns() { 
-      document.querySelectorAll('.countdown-timer').forEach(el => { 
-        let targetDate = new Date(el.getAttribute('data-date')); 
-        if(isNaN(targetDate)) return; 
-        let diff = targetDate - new Date(); 
-        if(diff <= 0) el.innerText = 'Event Ongoing'; 
-        else { 
-          let days = Math.floor(diff/(1000*60*60*24)); 
-          let hrs = Math.floor((diff/(1000*60*60))%24); 
-          el.innerText = `${days}d ${hrs}h to go`; 
-        } 
-      }); 
-    }
-    
-    function downloadDonationsPDF() {
-      const donations = JSON.parse(localStorage.getItem('donations') || '[]');
-      if(donations.length === 0) { alert("No donations recorded yet."); return; }
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.setFontSize(18);
-      doc.text("Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam", 20, 20);
-      doc.setFontSize(14);
-      doc.text("Donations Report", 20, 35);
-      doc.setFontSize(10);
-      let y = 50;
-      doc.text("S.No", 20, y); doc.text("Name", 40, y); doc.text("Amount", 90, y); doc.text("Type", 120, y); doc.text("Transaction ID", 160, y); doc.text("Date", 210, y);
-      y += 10;
-      donations.forEach((d, i) => {
-        doc.text((i+1).toString(), 20, y); 
-        doc.text((d.name || '').substring(0, 20), 40, y); 
-        doc.text("₹"+(d.amount || '0'), 90, y); 
-        doc.text((d.type || '').substring(0, 12), 120, y); 
-        doc.text((d.txId || '').substring(0, 12), 160, y); 
-        doc.text(d.date || '', 210, y);
-        y += 8;
-        if(y > 270) { doc.addPage(); y = 20; }
-      });
-      doc.save("Shakthipeetam_Donations_" + new Date().toISOString().slice(0,10) + ".pdf");
-      showToast("PDF Downloaded!");
-    }
-    
-    function sendWhatsAppReceipt() {
-      const name = document.getElementById('donorName').value;
-      const whatsapp = document.getElementById('donorWhatsApp').value;
-      const amount = document.getElementById('donationAmount').value;
-      const type = document.getElementById('donationType').value;
-      const txId = document.getElementById('transactionId').value;
-      if(!name || !whatsapp || !amount || !txId) { alert("దయచేసి అన్ని ఫీల్డ్లు నింపండి"); return; }
-      const receiptNo = "SKS/" + new Date().getFullYear() + "/" + Math.floor(Math.random() * 10000);
-      const date = new Date().toLocaleDateString('te-IN');
-      const receiptMsg = `🙏 *Sri Three Shakthipeetam - Donation Receipt* 🙏\n━━━━━━━━━━━━━━━━━\n*Receipt No:* ${receiptNo}\n*Date:* ${date}\n*Donor Name:* ${name}\n*Amount:* ₹${amount}\n*Purpose:* ${type}\n*Transaction ID:* ${txId}\n━━━━━━━━━━━━━━━━━\n*Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam*\nMandamarri, Telangana - 504231\n*Jai Mata Di!* 🕉️`;
-      const encodedMsg = encodeURIComponent(receiptMsg);
-      const whatsappLink = `https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}?text=${encodedMsg}`;
-      const donations = JSON.parse(localStorage.getItem('donations') || '[]');
-      donations.push({ name, amount, type, txId, receiptNo, date: new Date().toISOString().slice(0,10) });
-      localStorage.setItem('donations', JSON.stringify(donations));
-      showToast(`🙏 Thank you ${name}! WhatsApp receipt is ready.`);
-      window.open(whatsappLink, '_blank');
-      document.getElementById('donorName').value = ''; 
-      document.getElementById('donationAmount').value = ''; 
-      document.getElementById('transactionId').value = '';
-    }
-    
-    // Initialize
-    AOS.init({ duration: 800, once: true });
-    loadSavedData();
-    loadPoojas();
-    loadFestivals();
-    setInterval(updateCountdowns, 1000);
-    
-    window.eventSwiper = new Swiper('.eventSwiper', { slidesPerView: 1, spaceBetween: 20, breakpoints:{640:{slidesPerView:2}}, pagination:{el:'.swiper-pagination'}, navigation: true });
-    new Swiper('.testiSwiper', { slidesPerView: 1, pagination:{el:'.swiper-pagination',clickable:true}, autoplay:{delay:4000} });
-    
-    // Counters
-    const counters = document.querySelectorAll('.counter-number');
-    const animateCounters = () => { counters.forEach(c => { const target = +c.getAttribute('data-target'); let curr = 0; const update = () => { curr += Math.ceil(target/70); if(curr < target) { c.innerText = curr; requestAnimationFrame(update); } else c.innerText = target; }; update(); }); };
-    window.addEventListener('load', animateCounters);
-    
-    // Floating OM particles
-    for(let i=0;i<30;i++){ let om=document.createElement('div'); om.className='floating-om'; om.innerHTML='<i class="fas fa-om"></i>'; om.style.left=Math.random()*100+'%'; om.style.fontSize=Math.random()*35+15+'px'; om.style.animationDuration=Math.random()*15+8+'s'; om.style.animationDelay=Math.random()*10+'s'; document.getElementById('omParticles').appendChild(om); }
-    
-    window.bookWhatsapp = (service) => { window.open(`https://wa.me/919876543210?text=I want to book ${service} pooja at Three Shakthipeetam`,'_blank'); };
-    document.getElementById('bookPoojaBtn').onclick = () => document.getElementById('poojas').scrollIntoView({behavior:'smooth'});
-    document.getElementById('donateNowBtn').onclick = () => document.getElementById('donation').scrollIntoView({behavior:'smooth'});
-    document.getElementById('contactTempleBtn').onclick = () => document.getElementById('contact').scrollIntoView({behavior:'smooth'});
-    
+    // Fallback: also trigger on load after a short delay
+    window.addEventListener('load', () => { setTimeout(initCounters, 500); });
+
     // Lightbox
     const lightbox = document.getElementById('lightbox'), lightboxImg = document.getElementById('lightboxImg');
     document.querySelectorAll('.gallery-img').forEach(img => { img.addEventListener('click', () => { lightboxImg.src = img.getAttribute('data-full'); lightbox.classList.add('active'); }); });
     lightbox.onclick = (e) => { if(e.target === lightbox) lightbox.classList.remove('active'); };
-    window.showDeityModal = (text) => { document.getElementById('modalText').innerText = text; document.getElementById('deityModal').style.display = 'flex'; };
-    window.closeModal = () => { document.getElementById('deityModal').style.display = 'none'; };
-    
+    document.querySelector('.lightbox span')?.addEventListener('click', () => lightbox.classList.remove('active'));
+
+    // Donation receipt
+    function sendWhatsAppReceipt() {
+      const name = document.getElementById('donorName')?.value;
+      const whatsapp = document.getElementById('donorWhatsApp')?.value;
+      const amount = document.getElementById('donationAmount')?.value;
+      const type = document.getElementById('donationType')?.value;
+      const txId = document.getElementById('transactionId')?.value;
+      if(!name || !whatsapp || !amount || !txId) { alert("Please fill all details"); return; }
+      const receiptNo = "SKS/" + new Date().getFullYear() + "/" + Math.floor(Math.random() * 10000);
+      const receiptMsg = `🙏 *Sri Three Shakthipeetam Donation* 🙏\nReceipt No: ${receiptNo}\nDonor: ${name}\nAmount: ₹${amount}\nPurpose: ${type}\nTxID: ${txId}\nJai Mata Di! 🕉️`;
+      window.open(`https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(receiptMsg)}`, '_blank');
+      showToast("Receipt sent to WhatsApp");
+    }
+    function showToast(msg) { const t = document.getElementById('toastMsg'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
+
+    // Mobile menu
+    document.getElementById('menuBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => anchor.addEventListener('click', function(e) { e.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'}); if(window.innerWidth<768) document.getElementById('mobileMenu').classList.add('hidden'); }));
     const topBtn = document.getElementById('backToTop'); window.addEventListener('scroll', () => { window.scrollY > 500 ? topBtn.classList.remove('hidden') : topBtn.classList.add('hidden'); }); topBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
-    document.getElementById('menuBtn').onclick = () => { document.getElementById('mobileMenu').classList.toggle('hidden'); };
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'}); if(window.innerWidth < 768) document.getElementById('mobileMenu').classList.add('hidden'); }); });
     
-    // Audio
-    let audioPlaying = false; const audio = document.getElementById('bgAudio'), audioBtn = document.getElementById('audioToggle');
+    // OM Chanting Audio - Pure OM sound
+    let audioPlaying = false;
+    const audio = document.getElementById('bgAudio');
+    const audioBtn = document.getElementById('audioToggle');
+    
+    function playOMAudio() {
+      audio.play().then(() => {
+        audioPlaying = true;
+        audioBtn.classList.add('playing');
+        audioBtn.innerHTML = '<i class="fas fa-om"></i><span style="font-size:8px;position:absolute;bottom:-5px;right:-5px;">🔊</span>';
+      }).catch(err => { console.log("Audio play requires user interaction:", err); showToast("Click again to play OM chanting"); });
+    }
+    
+    function pauseOMAudio() {
+      audio.pause();
+      audioPlaying = false;
+      audioBtn.classList.remove('playing');
+      audioBtn.innerHTML = '<i class="fas fa-om"></i>';
+    }
+    
+    audioBtn.onclick = (e) => {
+      e.stopPropagation();
+      if (audioPlaying) {
+        pauseOMAudio();
+      } else {
+        playOMAudio();
+      }
+    };
+    
+    audio.loop = true;
+    audio.volume = 0.5;
     audio.load();
-    audioBtn.onclick = (e) => { e.stopPropagation(); if(audioPlaying) { audio.pause(); audioPlaying=false; audioBtn.classList.remove('playing'); audioBtn.innerHTML='<i class="fas fa-om"></i>'; } else { audio.play().then(() => { audioPlaying=true; audioBtn.classList.add('playing'); audioBtn.innerHTML='<i class="fas fa-om"></i><span style="font-size:8px;position:absolute;bottom:-5px;right:-5px;">🔊</span>'; }).catch(()=>{}); } };
     
-    const observeElements = document.querySelectorAll('.scroll-reveal'); const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: 0.1 }); observeElements.forEach(el => observer.observe(el));
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    AOS.init({ duration: 800, once: true });
   </script>
 </body>
 </html>
