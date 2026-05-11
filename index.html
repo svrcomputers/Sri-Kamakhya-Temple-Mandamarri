@@ -2,7 +2,7 @@
 <html lang="te">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <title>Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | Mandamarri</title>
   <meta name="description" content="Three Divine Shakthipeetams - Sri Kamakhya, Sri Lalitha, Sri Shyamal Varahi in Mandamarri, Telangana. Book pooja, get timings, contact temple head.">
   <meta name="theme-color" content="#6b1a2a">
@@ -24,6 +24,23 @@
       background: #fffaf5;
       color: #4a1a2a;
       overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+    /* ensure all containers respect viewport width */
+    .container, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl, .max-w-3xl, .max-w-2xl, .max-w-xl {
+      width: 100%;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    @media (min-width: 640px) {
+      .container, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl, .max-w-3xl, .max-w-2xl {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
     }
     h1, h2, h3, .cinzel { font-family: 'Cinzel', serif; }
     .text-maroon { color: #6b1a2a; }
@@ -41,7 +58,7 @@
     .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
     .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,240,235,0.5) 0%, rgba(107,26,42,0.25) 100%); z-index: -1; }
     
-    /* Floating OM Symbols Animation - Restored */
+    /* Floating OM Symbols Animation */
     .floating-om-symbol {
       position: absolute;
       font-size: 2rem;
@@ -59,7 +76,13 @@
       100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
     }
     
-    .counter-number { font-size: 2.8rem; font-weight: 700; background: linear-gradient(135deg, #6b1a2a, #b8860b); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
+    .counter-number { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #6b1a2a, #b8860b); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
+    @media (min-width: 640px) {
+      .counter-number { font-size: 2.5rem; }
+    }
+    @media (min-width: 768px) {
+      .counter-number { font-size: 2.8rem; }
+    }
     .timeline-dot { width: 14px; height: 14px; background: #b8860b; border-radius: 50%; position: absolute; left: -8px; top: 5px; box-shadow: 0 0 0 4px rgba(184,134,11,0.3); }
     .scroll-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
     .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
@@ -70,41 +93,31 @@
     .lightbox.active { display: flex; }
     .lightbox img { max-width: 90%; max-height: 90%; border-radius: 16px; border: 2px solid #b8860b; }
     .floating-social { position: fixed; bottom: 25px; right: 20px; z-index: 999; display: flex; flex-direction: column; gap: 12px; }
-    .floating-social .social-btn { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(0,0,0,0.25); text-decoration: none; }
+    .floating-social .social-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(0,0,0,0.25); text-decoration: none; }
+    @media (min-width: 640px) {
+      .floating-social .social-btn { width: 54px; height: 54px; font-size: 26px; }
+    }
     .floating-social .social-btn:hover { transform: scale(1.12); }
     .btn-whatsapp-chat { background: #25D366; color: white; }
     .btn-whatsapp-group { background: #128C7E; color: white; }
     .btn-youtube { background: #FF0000; color: white; }
-    /* Removed audio-btn styles completely since audio section removed */
-    .hero-om-wrapper { 
-      text-align: center; 
-      margin-bottom: 1.25rem; 
-      padding: 0; 
-    }
+    .hero-om-wrapper { text-align: center; margin-bottom: 1rem; padding: 0; }
     .hero-om-wrapper .om-text-glow {
-      font-size: 1rem;
+      font-size: 0.75rem;
       font-family: 'Cinzel', serif;
       font-weight: bold;
       color: #6b1a2a;
       text-shadow: 0 0 8px rgba(184,134,11,0.6);
-      letter-spacing: 2px;
-      white-space: nowrap;
+      letter-spacing: 1px;
+      white-space: normal;
+      word-break: keep-all;
       display: inline-block;
     }
-    /* Mobile adjustments for OM text */
-    @media (max-width: 640px) {
-      .hero-om-wrapper .om-text-glow {
-        font-size: 0.75rem;
-        white-space: normal;
-        word-break: keep-all;
-        letter-spacing: 1px;
-      }
-      .hero-om-wrapper {
-        margin-bottom: 0.75rem;
-      }
+    @media (min-width: 480px) {
+      .hero-om-wrapper .om-text-glow { font-size: 0.85rem; letter-spacing: 1.5px; }
     }
     @media (min-width: 768px) { 
-      .hero-om-wrapper .om-text-glow { font-size: 1.1rem; } 
+      .hero-om-wrapper .om-text-glow { font-size: 1rem; letter-spacing: 2px; } 
     }
     .hero-om-glow { display: inline-block; animation: omPulse 2s infinite ease-in-out; }
     @keyframes omPulse { 
@@ -112,87 +125,90 @@
       50% { text-shadow: 0 0 15px #b8860b, 0 0 10px #d4af37; transform: scale(1.02); } 
       100% { text-shadow: 0 0 5px #b8860b; transform: scale(1); } 
     }
-    .toast-notification { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(100px); background: linear-gradient(135deg, #6b1a2a, #8b2a3a); color: #d4af37; padding: 12px 24px; border-radius: 50px; font-weight: 500; z-index: 1000; opacity: 0; transition: all 0.3s ease; pointer-events: none; white-space: nowrap; }
+    .toast-notification { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(100px); background: linear-gradient(135deg, #6b1a2a, #8b2a3a); color: #d4af37; padding: 10px 20px; border-radius: 50px; font-weight: 500; z-index: 1000; opacity: 0; transition: all 0.3s ease; pointer-events: none; white-space: nowrap; font-size: 0.85rem; }
+    @media (max-width: 540px) {
+      .toast-notification { white-space: normal; width: 90%; text-align: center; font-size: 0.75rem; }
+    }
     .toast-notification.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     .square-img { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; border-radius: 28px; transition: transform 0.3s ease; }
     .square-img:hover { transform: scale(1.02); }
     .booking-card { transition: all 0.3s; }
     .booking-card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(107,26,42,0.2); }
-    .datetime-header { font-family: 'Inter', monospace; letter-spacing: 0.5px; background: rgba(107,26,42,0.08); backdrop-filter: blur(4px); border-radius: 60px; padding: 6px 16px; display: inline-block; font-size: 0.85rem; font-weight: 500; }
-    @media (max-width: 640px) { .counter-number { font-size: 2rem; } }
-    .footer-section { text-align: left; }
-    .footer-section ul { padding-left: 0; list-style: none; }
-    .footer-section li { margin-bottom: 8px; }
-    .footer-section a { color: #4a0e1a; text-decoration: none; transition: color 0.2s; }
-    .footer-section a:hover { color: #b8860b; }
-    .devotee-counter-wrapper { display: flex; align-items: baseline; justify-content: center; gap: 4px; }
-    /* Temple Head Square Image - Force square dimensions */
+    .devotee-counter-wrapper { display: flex; align-items: baseline; justify-content: center; gap: 4px; flex-wrap: wrap; }
     .temple-head-img {
       width: 100%;
-      max-width: 280px;
+      max-width: 240px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 24px;
       box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
       border: 3px solid #d4af37;
+      margin: 0 auto;
+    }
+    @media (min-width: 640px) {
+      .temple-head-img { max-width: 260px; }
     }
     @media (min-width: 768px) {
-      .temple-head-img {
-        max-width: 280px;
-      }
+      .temple-head-img { max-width: 280px; }
     }
-    /* Mobile nav brand visible fix */
-    .nav-brand-mobile {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    /* Mobile nav adjustments */
+    .nav-brand-mobile { display: flex; align-items: center; gap: 8px; }
+    .nav-brand-text { font-size: 0.85rem; line-height: 1.2; max-width: 140px; }
+    @media (min-width: 480px) {
+      .nav-brand-text { font-size: 1rem; max-width: 200px; }
     }
-    @media (max-width: 767px) {
-      .nav-brand-text {
-        font-size: 0.9rem;
-        white-space: normal;
-        line-height: 1.2;
-      }
-    }
-    /* New style for OM text under navbar (subtle decorative) */
     .sub-nav-om {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       letter-spacing: 1px;
       color: #6b1a2a;
       font-weight: 500;
       margin-top: 2px;
       font-family: 'Cinzel', serif;
+      white-space: nowrap;
+    }
+    @media (max-width: 380px) {
+      .sub-nav-om { font-size: 0.5rem; letter-spacing: 0.5px; white-space: normal; line-height: 1.2; }
+      .nav-brand-text { font-size: 0.75rem; }
     }
     @media (min-width: 768px) {
-      .sub-nav-om {
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-      }
+      .sub-nav-om { font-size: 0.75rem; letter-spacing: 2px; white-space: nowrap; }
     }
-    /* Ensure hero main headings are fully visible */
-    #home .container {
-      padding-top: 5rem;
-      padding-bottom: 2rem;
+    #home .container { padding-top: 5rem; padding-bottom: 2rem; }
+    @media (max-width: 640px) {
+      #home .container { padding-top: 6rem; padding-bottom: 3rem; }
+      h1 { font-size: 1.8rem; line-height: 1.25; }
+      h2 { font-size: 1.6rem; line-height: 1.25; }
     }
-    @media (max-width: 768px) {
-      #home .container {
-        padding-top: 6rem;
-        padding-bottom: 3rem;
-      }
-      h1, h2 {
-        line-height: 1.2;
-      }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.4rem; }
     }
+    /* Gallery columns fix on mobile */
+    .columns-1 { column-count: 1; }
+    @media (min-width: 480px) {
+      .columns-1.sm\:columns-2 { column-count: 2; }
+    }
+    @media (min-width: 768px) {
+      .columns-1.sm\:columns-2.md\:columns-3 { column-count: 3; }
+    }
+    .gallery-img { cursor: pointer; transition: transform 0.2s; margin-bottom: 1rem; break-inside: avoid; }
+    .footer-section ul { padding-left: 0; list-style: none; }
+    .footer-section a { word-break: break-word; }
+    iframe, img, video { max-width: 100%; height: auto; }
+    /* Fix grid gaps and overflow */
+    .grid { gap: 1.25rem; }
+    .glass-card { overflow: hidden; }
+    .btn-maroon, .btn-gold, .border { display: inline-block; white-space: normal; word-break: break-word; }
+    button, a { cursor: pointer; }
+    /* scroll reveal override for small devices */
+    .scroll-reveal { will-change: transform, opacity; }
   </style>
 </head>
 <body>
 
-  <!-- Floating OM Symbols Animation Container (Visual only, no audio) -->
   <div id="omParticles"></div>
   
-  <!-- Removed Audio Button and Audio completely as requested -->
-
   <div class="floating-social">
     <a href="https://wa.me/919618336559?text=Jai%20Mata%20Di!" target="_blank" class="social-btn btn-whatsapp-chat"><i class="fab fa-whatsapp"></i></a>
     <a href="https://whatsapp.com/channel/0029Vaprb56D38CbqaZDaq3E" target="_blank" class="social-btn btn-whatsapp-group"><i class="fab fa-whatsapp"></i><span style="font-size:12px;margin-left:-12px;margin-top:14px;position:absolute;">👥</span></a>
@@ -201,116 +217,108 @@
 
   <button id="backToTop" class="fixed bottom-6 right-24 z-50 bg-maroon text-white rounded-full p-3 shadow-xl hidden transition-all"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- Navigation - Date and Time REMOVED as requested -->
-  <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-lg border-b border-maroon/20 py-2 px-5 shadow-sm">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
+  <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-lg border-b border-maroon/20 py-2 px-4 shadow-sm">
+    <div class="max-w-7xl mx-auto flex justify-between items-center w-full">
       <div class="flex flex-col items-start">
         <div class="flex items-center gap-2">
           <i class="fas fa-om text-2xl md:text-3xl text-maroon"></i>
-          <span class="cinzel text-base md:text-xl font-bold gold-gradient nav-brand-text">Shakthipeetam</span>
+          <span class="cinzel text-sm md:text-xl font-bold gold-gradient nav-brand-text">Shakthipeetam</span>
         </div>
-        <!-- Added OM SREE MATRE NAMAHA right below brand with maroon color, same alignment -->
         <span class="sub-nav-om">🕉️ Om Sree Matre Namaha 🕉️</span>
       </div>
-      <!-- Removed datetime-header div completely -->
-      <div class="hidden md:flex gap-6 text-sm font-medium text-maroon-dark">
+      <div class="hidden md:flex gap-5 text-sm font-medium text-maroon-dark">
         <a href="#home">Home</a><a href="#about">About</a><a href="#deities">Deities</a><a href="#poojaTimings">Pooja Timings</a><a href="#templeHead">Temple Head</a><a href="#gallery">Gallery</a><a href="#youtubeVideo">Video</a><a href="#bookingSection">Bookings</a><a href="#donation">Donate</a><a href="#contact">Contact</a>
       </div>
       <button id="menuBtn" class="md:hidden text-2xl text-maroon"><i class="fas fa-bars"></i></button>
     </div>
-    <div id="mobileMenu" class="hidden md:hidden flex flex-col gap-4 bg-white/98 backdrop-blur-lg p-6 mt-3 rounded-2xl shadow-lg">
+    <div id="mobileMenu" class="hidden md:hidden flex flex-col gap-4 bg-white/98 backdrop-blur-lg p-5 mt-3 rounded-2xl shadow-lg">
       <a href="#home">Home</a><a href="#about">About</a><a href="#deities">Deities</a><a href="#poojaTimings">Pooja Timings</a><a href="#templeHead">Temple Head</a><a href="#gallery">Gallery</a><a href="#youtubeVideo">Video</a><a href="#bookingSection">Bookings</a><a href="#donation">Donate</a><a href="#contact">Contact</a>
     </div>
   </nav>
 
   <main>
-    <!-- Hero Section - Improved visibility for top heading (no cutoff) -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <video autoplay muted loop playsinline class="hero-video"><source src="https://cdn.coverr.co/videos/coverr-temple-candles-5781/1080p.mp4" type="video/mp4"></video>
       <div class="hero-overlay"></div>
-      <div class="container mx-auto px-6 text-center relative z-10">
-        <!-- Om Sree Matre Namaha already present here, but keeping consistency, now headings fully visible with extra padding -->
+      <div class="container mx-auto px-5 text-center relative z-10">
         <div class="hero-om-wrapper">
           <div class="hero-om-glow">
             <div class="om-text-glow">🕉️ Om Sree Matre Namaha 🕉️</div>
           </div>
         </div>
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold maroon-gradient leading-tight">Sri Kamakhya Lalitha Shyamal Varahi</h1>
-        <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold gold-gradient mt-2 leading-tight">Three Shakthipeetam</h2>
-        <p class="text-xl md:text-2xl text-maroon-dark/80 mt-4 max-w-2xl mx-auto">Divine Abode • Mandamarri, Telangana – 504231</p>
-        <div class="flex flex-wrap justify-center gap-5 mt-10">
-          <a href="#bookingSection" class="btn-maroon px-8 py-3 rounded-full shadow-lg inline-block"><i class="fas fa-hand-sparkles mr-2"></i>Book Pooja</a>
-          <a href="#donation" class="btn-gold px-8 py-3 rounded-full shadow-lg inline-block"><i class="fas fa-donate mr-2"></i>Donate Now</a>
-          <a href="#contact" class="border border-maroon px-6 py-3 rounded-full text-maroon font-semibold hover:bg-maroon/10 inline-block"><i class="fas fa-phone-alt mr-2"></i>Contact</a>
+        <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold maroon-gradient leading-tight">Sri Kamakhya Lalitha Shyamal Varahi</h1>
+        <h2 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold gold-gradient mt-2 leading-tight">Three Shakthipeetam</h2>
+        <p class="text-base md:text-2xl text-maroon-dark/80 mt-4 max-w-2xl mx-auto px-2">Divine Abode • Mandamarri, Telangana – 504231</p>
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+          <a href="#bookingSection" class="btn-maroon px-6 py-2.5 rounded-full shadow-lg inline-block text-sm sm:text-base"><i class="fas fa-hand-sparkles mr-2"></i>Book Pooja</a>
+          <a href="#donation" class="btn-gold px-6 py-2.5 rounded-full shadow-lg inline-block text-sm sm:text-base"><i class="fas fa-donate mr-2"></i>Donate Now</a>
+          <a href="#contact" class="border border-maroon px-5 py-2.5 rounded-full text-maroon font-semibold hover:bg-maroon/10 inline-block text-sm sm:text-base"><i class="fas fa-phone-alt mr-2"></i>Contact</a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-20 glass-card p-6 max-w-3xl mx-auto">
-          <div><i class="fas fa-clock text-maroon text-3xl"></i><p class="font-bold mt-2">Daily Pooja Timings</p><p class="text-sm">Morning 6:00 AM • Evening 6:30 PM</p></div>
-          <div><i class="fas fa-users text-maroon text-3xl"></i><p class="font-bold mt-2">Devotees Blessed</p><div class="devotee-counter-wrapper"><span class="counter-number" id="devoteeCounter" data-target="25888">0</span><span class="text-maroon text-2xl">+</span></div></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-12 glass-card p-5 max-w-3xl mx-auto">
+          <div><i class="fas fa-clock text-maroon text-2xl sm:text-3xl"></i><p class="font-bold mt-2 text-sm sm:text-base">Daily Pooja Timings</p><p class="text-xs sm:text-sm">Morning 6:00 AM • Evening 6:30 PM</p></div>
+          <div><i class="fas fa-users text-maroon text-2xl sm:text-3xl"></i><p class="font-bold mt-2 text-sm sm:text-base">Devotees Blessed</p><div class="devotee-counter-wrapper"><span class="counter-number" id="devoteeCounter" data-target="25888">0</span><span class="text-maroon text-xl sm:text-2xl">+</span></div></div>
         </div>
-        <div class="grid grid-cols-3 gap-4 mt-12 max-w-3xl mx-auto text-center">
-          <div><div class="counter-number" data-target="108">0</div><p class="text-xs">Years of Legacy</p></div>
-          <div><div class="counter-number" data-target="15000">0</div><p class="text-xs">Devotees/Month</p></div>
-          <div><div class="counter-number" data-target="450">0</div><p class="text-xs">Poojas Conducted</p></div>
+        <div class="grid grid-cols-3 gap-3 mt-10 max-w-3xl mx-auto text-center">
+          <div><div class="counter-number text-2xl sm:text-3xl" data-target="108">0</div><p class="text-[11px] sm:text-xs">Years of Legacy</p></div>
+          <div><div class="counter-number text-2xl sm:text-3xl" data-target="15000">0</div><p class="text-[11px] sm:text-xs">Devotees/Month</p></div>
+          <div><div class="counter-number text-2xl sm:text-3xl" data-target="450">0</div><p class="text-[11px] sm:text-xs">Poojas Conducted</p></div>
         </div>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 px-6 bg-maroon-soft">
-      <div class="max-w-7xl mx-auto"><h2 class="text-4xl md:text-5xl cinzel text-center maroon-gradient mb-16 scroll-reveal">Sacred Three Shakthipeetam</h2>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+    <section id="about" class="py-16 md:py-24 px-5 bg-maroon-soft">
+      <div class="max-w-7xl mx-auto"><h2 class="text-3xl md:text-5xl cinzel text-center maroon-gradient mb-10 scroll-reveal">Sacred Three Shakthipeetam</h2>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
           <div class="scroll-reveal"><img src="kamakya/images/1.webp?w=600" class="rounded-2xl shadow-2xl w-full object-cover" alt="Temple"></div>
-          <div class="scroll-reveal space-y-5"><p class="text-maroon-dark leading-relaxed">Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam in Mandamarri is a radiant Trishakti center. Three divine goddesses grace this sacred land: Kamakhya (desire), Lalitha (beauty), and Varahi (command).</p>
-          <div class="space-y-4 mt-6 relative pl-6 border-l-2 border-maroon"><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Kamakhya Devi</span><p class="text-sm">Yoni Peetha, bestows fertility and moksha</p></div><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Lalitha Devi</span><p class="text-sm">Mahatripurasundari, Sri Chakra worship</p></div><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Shyamal Varahi</span><p class="text-sm">Boar-faced deity, removes obstacles</p></div></div>
-          <p class="italic text-maroon border-t border-maroon/30 pt-4">"Revive ancient Shakti traditions" – Founder Sri Yogi Sathish Guruji</p></div>
+          <div class="scroll-reveal space-y-4"><p class="text-maroon-dark leading-relaxed">Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam in Mandamarri is a radiant Trishakti center. Three divine goddesses grace this sacred land: Kamakhya (desire), Lalitha (beauty), and Varahi (command).</p>
+          <div class="space-y-4 mt-5 relative pl-6 border-l-2 border-maroon"><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Kamakhya Devi</span><p class="text-sm">Yoni Peetha, bestows fertility and moksha</p></div><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Lalitha Devi</span><p class="text-sm">Mahatripurasundari, Sri Chakra worship</p></div><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Shyamal Varahi</span><p class="text-sm">Boar-faced deity, removes obstacles</p></div></div>
+          <p class="italic text-maroon border-t border-maroon/30 pt-4 text-sm">"Revive ancient Shakti traditions" – Founder Sri Yogi Sathish Guruji</p></div>
         </div>
       </div>
     </section>
 
-    <!-- Deities Section -->
-    <section id="deities" class="py-24 px-6 bg-white">
-      <div class="max-w-7xl mx-auto"><h2 class="text-4xl cinzel text-center maroon-gradient mb-14 scroll-reveal">The Divine Three Shakthipeetam</h2>
-        <div class="grid md:grid-cols-3 gap-8">
+    <section id="deities" class="py-16 md:py-24 px-5 bg-white">
+      <div class="max-w-7xl mx-auto"><h2 class="text-3xl md:text-5xl cinzel text-center maroon-gradient mb-10 scroll-reveal">The Divine Three Shakthipeetam</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
           <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
-            <img src="kamakya/images/Lalitha Devi.jpg?w=500" class="square-img shadow-lg" alt="Sri Lalitha Devi">
-            <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Lalitha Devi</h3>
+            <img src="kamakya/images/Lalitha Devi.webp?w=500" class="square-img shadow-lg" alt="Sri Lalitha Devi">
+            <h3 class="text-2xl cinzel mt-4 text-maroon">Sri Lalitha Devi</h3>
             <p class="text-sm px-2">Yoni Peetha, bestows fertility & moksha</p>
           </div>
           <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
             <img src="kamakya/images/shyamala devi.webp?w=500" class="square-img shadow-lg" alt="Sri Shyamala Devi">
-            <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Shyamala Devi</h3>
+            <h3 class="text-2xl cinzel mt-4 text-maroon">Sri Shyamala Devi</h3>
             <p class="text-sm px-2">Mahatripurasundari, Sri Chakra worship</p>
           </div>
           <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
             <img src="kamakya/images/varahi devi1.webp?w=500" class="square-img shadow-lg" alt="Sri Varahi Devi">
-            <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Varahi Devi</h3>
+            <h3 class="text-2xl cinzel mt-4 text-maroon">Sri Varahi Devi</h3>
             <p class="text-sm px-2">Boar-faced deity, removes obstacles</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Pooja Timings Section -->
-    <section id="poojaTimings" class="py-24 px-6 bg-maroon-soft">
+    <section id="poojaTimings" class="py-16 md:py-24 px-5 bg-maroon-soft">
       <div class="max-w-5xl mx-auto">
-        <h2 class="text-4xl cinzel text-center maroon-gradient mb-10 scroll-reveal">Pooja Timings</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="glass-card p-8 text-center scroll-reveal">
-            <i class="fas fa-sun text-4xl text-maroon"></i>
-            <h3 class="text-2xl font-bold text-maroon mt-3">Morning Pooja</h3>
-            <div class="border-t border-maroon/20 my-4"></div>
-            <ul class="space-y-3 text-maroon-dark">
+        <h2 class="text-3xl md:text-5xl cinzel text-center maroon-gradient mb-8 scroll-reveal">Pooja Timings</h2>
+        <div class="grid md:grid-cols-2 gap-7">
+          <div class="glass-card p-6 text-center scroll-reveal">
+            <i class="fas fa-sun text-3xl text-maroon"></i>
+            <h3 class="text-xl md:text-2xl font-bold text-maroon mt-2">Morning Pooja</h3>
+            <div class="border-t border-maroon/20 my-3"></div>
+            <ul class="space-y-2 text-maroon-dark text-sm md:text-base">
               <li><span class="font-semibold">6:00 AM</span> – Suprabhatam & Mangala Aarti</li>
               <li><span class="font-semibold">7:30 AM</span> – Abhishekam (Kamakhya Devi)</li>
               <li><span class="font-semibold">9:00 AM</span> – Lalitha Sahasranamam</li>
               <li><span class="font-semibold">10:30 AM</span> – Rajabhoga Naivedyam</li>
             </ul>
           </div>
-          <div class="glass-card p-8 text-center scroll-reveal">
-            <i class="fas fa-moon text-4xl text-maroon"></i>
-            <h3 class="text-2xl font-bold text-maroon mt-3">Evening Pooja</h3>
-            <div class="border-t border-maroon/20 my-4"></div>
-            <ul class="space-y-3 text-maroon-dark">
+          <div class="glass-card p-6 text-center scroll-reveal">
+            <i class="fas fa-moon text-3xl text-maroon"></i>
+            <h3 class="text-xl md:text-2xl font-bold text-maroon mt-2">Evening Pooja</h3>
+            <div class="border-t border-maroon/20 my-3"></div>
+            <ul class="space-y-2 text-maroon-dark text-sm md:text-base">
               <li><span class="font-semibold">5:00 PM</span> – Dhoop Aarti & Deeparadhana</li>
               <li><span class="font-semibold">6:30 PM</span> – Sandhya Vandanam & Shakti Homam</li>
               <li><span class="font-semibold">7:45 PM</span> – Pradosha Pooja (special)</li>
@@ -318,39 +326,37 @@
             </ul>
           </div>
         </div>
-        <div class="glass-card p-6 mt-6 text-center scroll-reveal">
-          <i class="fas fa-calendar-week text-maroon text-2xl"></i>
-          <p class="font-medium mt-2">📿 *Special Poojas every Amavasya, Pournami & Fridays*</p>
+        <div class="glass-card p-5 mt-6 text-center scroll-reveal">
+          <i class="fas fa-calendar-week text-maroon text-xl"></i>
+          <p class="font-medium mt-1 text-sm md:text-base">📿 *Special Poojas every Amavasya, Pournami & Fridays*</p>
         </div>
       </div>
     </section>
 
-    <!-- Temple Head Section with Square Image -->
-    <section id="templeHead" class="py-24 px-6 bg-white">
+    <section id="templeHead" class="py-16 md:py-24 px-5 bg-white">
       <div class="max-w-5xl mx-auto">
-        <h2 class="text-4xl cinzel text-center maroon-gradient mb-12 scroll-reveal">Temple Head</h2>
-        <div class="flex flex-col md:flex-row items-center gap-12 glass-card p-8 rounded-3xl scroll-reveal">
-          <div class="w-64 h-64 md:w-72 md:h-72 shrink-0">
-            <img src="kamakya/images/sathish.jpg" class="temple-head-img w-full h-full object-cover" alt="Temple Head Sri Yogi Sathish Guruji">
+        <h2 class="text-3xl md:text-5xl cinzel text-center maroon-gradient mb-10 scroll-reveal">Temple Head</h2>
+        <div class="flex flex-col md:flex-row items-center gap-8 glass-card p-6 md:p-8 rounded-3xl scroll-reveal">
+          <div class="w-48 h-48 md:w-64 md:h-64 shrink-0 mx-auto md:mx-0">
+            <img src="kamakya/images/sathish.jpg" class="temple-head-img w-full h-full object-cover rounded-2xl" alt="Temple Head Sri Yogi Sathish Guruji">
           </div>
           <div class="text-center md:text-left">
-            <h3 class="text-3xl cinzel text-maroon">Sri Yogi Sathish Guruji</h3>
-            <p class="text-gold font-semibold text-xl mt-1">Chief Priest & Spiritual Director</p>
-            <div class="w-20 h-1 bg-gold my-4 mx-auto md:mx-0"></div>
-            <p class="text-maroon-dark leading-relaxed max-w-lg">With over 30 years of devotion and Vedic scholarship, Sri Yogi Sathish Guruji revived the Three Shakthipeetam tradition in Mandamarri. He leads the Sri Vidya upasana, conducts powerful homams and guides countless devotees on the path of Shakti worship.</p>
-            <div class="flex gap-4 mt-6 justify-center md:justify-start">
-              <span class="bg-maroon-soft px-3 py-1 rounded-full text-sm"><i class="fas fa-om text-maroon"></i> Sri Chakra Expert</span>
-              <span class="bg-maroon-soft px-3 py-1 rounded-full text-sm"><i class="fas fa-hand-sparkles"></i> Varahi Upasaka</span>
+            <h3 class="text-2xl md:text-3xl cinzel text-maroon">Sri Yogi Sathish Guruji</h3>
+            <p class="text-gold font-semibold text-lg md:text-xl mt-1">Chief Priest & Spiritual Director</p>
+            <div class="w-20 h-1 bg-gold my-3 mx-auto md:mx-0"></div>
+            <p class="text-maroon-dark leading-relaxed text-sm md:text-base">With over 30 years of devotion and Vedic scholarship, Sri Yogi Sathish Guruji revived the Three Shakthipeetam tradition in Mandamarri. He leads the Sri Vidya upasana, conducts powerful homams and guides countless devotees on the path of Shakti worship.</p>
+            <div class="flex flex-wrap gap-3 mt-5 justify-center md:justify-start">
+              <span class="bg-maroon-soft px-3 py-1 rounded-full text-xs"><i class="fas fa-om text-maroon"></i> Sri Chakra Expert</span>
+              <span class="bg-maroon-soft px-3 py-1 rounded-full text-xs"><i class="fas fa-hand-sparkles"></i> Varahi Upasaka</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-24 px-6 bg-maroon-soft">
-      <div class="max-w-7xl mx-auto"><h2 class="text-4xl cinzel text-center maroon-gradient mb-12">Gallery</h2>
-        <div class="columns-1 sm:columns-2 md:columns-3 gap-5 space-y-5">
+    <section id="gallery" class="py-16 md:py-24 px-5 bg-maroon-soft">
+      <div class="max-w-7xl mx-auto"><h2 class="text-3xl md:text-5xl cinzel text-center maroon-gradient mb-10">Gallery</h2>
+        <div class="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/guru.jpg?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800" alt="Gallery img">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal7.webp?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800" alt="Gallery img">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal1.webp?w=400" data-full="https://images.unsplash.com/photo-1599566746534-8e678cd4fa27?w=800" alt="Gallery img">
@@ -366,83 +372,67 @@
       </div>
     </section>
 
-    <!-- YouTube Video Section -->
-    <section id="youtubeVideo" class="py-24 px-6 bg-white">
+    <section id="youtubeVideo" class="py-16 md:py-24 px-5 bg-white">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl cinzel text-center maroon-gradient mb-8 scroll-reveal">Divine Temple Video</h2>
+        <h2 class="text-3xl md:text-5xl cinzel text-center maroon-gradient mb-6 scroll-reveal">Divine Temple Video</h2>
         <div class="scroll-reveal shadow-2xl rounded-3xl overflow-hidden">
           <div class="relative pb-[56.25%] h-0">
             <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/jH4iPkIklSo" title="Temple Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
-        <p class="mt-5 text-maroon-dark text-lg font-medium">Temple Video</p>
-        <p class="text-maroon-dark/70 mt-2">Experience the divine vibrations and grand celebrations at our temple.</p>
+        <p class="mt-4 text-maroon-dark text-base md:text-lg font-medium">Temple Video</p>
+        <p class="text-maroon-dark/70 text-sm">Experience the divine vibrations and grand celebrations at our temple.</p>
       </div>
     </section>
 
-    <!-- Booking & Appointment Section -->
-    <section id="bookingSection" class="py-24 px-6 bg-maroon-soft">
+    <section id="bookingSection" class="py-16 md:py-24 px-5 bg-maroon-soft">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl cinzel text-center maroon-gradient mb-6 scroll-reveal">Book Pooja / Astrology Appointment</h2>
-        <p class="text-center text-maroon-dark mb-12">Connect instantly via WhatsApp or Call to reserve your slot</p>
-        <div class="grid md:grid-cols-2 gap-10">
-          <div class="glass-card p-8 text-center booking-card scroll-reveal">
-            <i class="fab fa-whatsapp text-6xl text-green-600 mb-4"></i>
-            <h3 class="text-2xl font-bold text-maroon">WhatsApp Booking</h3>
-            <p class="text-maroon-dark mt-2">Share your pooja requirement, date & timings. Our team will confirm immediately.</p>
-            <a href="https://wa.me/919618336559?text=Namaskaram%2C%20I%20want%20to%20book%20a%20pooja%20or%20astrology%20appointment%20at%20Three%20Shakthipeetam" target="_blank" class="btn-gold mt-6 inline-block px-8 py-3 rounded-full w-full md:w-auto"><i class="fab fa-whatsapp mr-2"></i> Book via WhatsApp</a>
+        <h2 class="text-3xl md:text-5xl cinzel text-center maroon-gradient mb-4 scroll-reveal">Book Pooja / Astrology Appointment</h2>
+        <p class="text-center text-maroon-dark mb-8 text-sm md:text-base">Connect instantly via WhatsApp or Call to reserve your slot</p>
+        <div class="grid md:grid-cols-2 gap-7">
+          <div class="glass-card p-6 text-center booking-card scroll-reveal">
+            <i class="fab fa-whatsapp text-5xl text-green-600 mb-3"></i>
+            <h3 class="text-xl md:text-2xl font-bold text-maroon">WhatsApp Booking</h3>
+            <p class="text-maroon-dark mt-2 text-sm">Share your pooja requirement, date & timings. Our team will confirm immediately.</p>
+            <a href="https://wa.me/919618336559?text=Namaskaram%2C%20I%20want%20to%20book%20a%20pooja%20or%20astrology%20appointment%20at%20Three%20Shakthipeetam" target="_blank" class="btn-gold mt-5 inline-block px-6 py-2.5 rounded-full w-full md:w-auto"><i class="fab fa-whatsapp mr-2"></i> Book via WhatsApp</a>
           </div>
-          <div class="glass-card p-8 text-center booking-card scroll-reveal">
-            <i class="fas fa-phone-alt text-6xl text-maroon mb-4"></i>
-            <h3 class="text-2xl font-bold text-maroon">Call to Book</h3>
-            <p class="text-maroon-dark mt-2">Speak directly with our priest or coordinator for pooja slots & astrology readings.</p>
-            <a href="tel:+919618336559" class="btn-maroon mt-6 inline-block px-8 py-3 rounded-full w-full md:w-auto"><i class="fas fa-phone-alt mr-2"></i> Call Now: +91 9618336559</a>
-            <p class="text-xs text-maroon-dark mt-3">Available 8 AM – 8 PM</p>
+          <div class="glass-card p-6 text-center booking-card scroll-reveal">
+            <i class="fas fa-phone-alt text-5xl text-maroon mb-3"></i>
+            <h3 class="text-xl md:text-2xl font-bold text-maroon">Call to Book</h3>
+            <p class="text-maroon-dark mt-2 text-sm">Speak directly with our priest or coordinator for pooja slots & astrology readings.</p>
+            <a href="tel:+919618336559" class="btn-maroon mt-5 inline-block px-6 py-2.5 rounded-full w-full md:w-auto"><i class="fas fa-phone-alt mr-2"></i> Call Now: +91 9618336559</a>
+            <p class="text-xs text-maroon-dark mt-2">Available 8 AM – 8 PM</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Donation Section -->
-    <section id="donation" class="py-24 px-6 bg-white">
-      <div class="max-w-5xl mx-auto glass-card p-8 rounded-3xl">
-        <h2 class="text-3xl cinzel text-center maroon-gradient">Support the Sacred Mission</h2>
-        <p class="text-center text-maroon-dark mt-2">🙏 Donate via UPI • Get Receipt on WhatsApp</p>
-        <div class="grid md:grid-cols-2 gap-8 mt-6">
-          <div class="text-center"><i class="fas fa-qrcode text-6xl text-maroon"></i><h3 class="text-xl mt-2">Scan & Pay (UPI)</h3><div class="bg-white p-4 rounded-xl inline-block mt-3 shadow"><img src="kamakya/images/qrcode.png" class="w-48 mx-auto" alt="QR Code"></div><p class="mt-3 font-mono text-maroon">UPI: Phonepay ID</p></div>
-          <div><input type="text" id="donorName" placeholder="Full Name *" class="w-full p-3 rounded-xl border border-maroon/50 mt-2"><input type="tel" id="donorWhatsApp" placeholder="WhatsApp Number *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><input type="number" id="donationAmount" placeholder="Amount (₹) *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><select id="donationType" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><option>Annadanam</option><option>Temple Renovation</option></select><input type="text" id="transactionId" placeholder="Transaction ID *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><button onclick="sendWhatsAppReceipt()" class="btn-maroon w-full mt-5 py-2 rounded-full"><i class="fab fa-whatsapp mr-2"></i>Submit & Get Receipt</button></div>
+    <section id="donation" class="py-16 md:py-24 px-5 bg-white">
+      <div class="max-w-5xl mx-auto glass-card p-6 md:p-8 rounded-3xl">
+        <h2 class="text-2xl md:text-3xl cinzel text-center maroon-gradient">Support the Sacred Mission</h2>
+        <p class="text-center text-maroon-dark mt-1 text-sm">🙏 Donate via UPI • Get Receipt on WhatsApp</p>
+        <div class="grid md:grid-cols-2 gap-6 mt-5">
+          <div class="text-center"><i class="fas fa-qrcode text-5xl text-maroon"></i><h3 class="text-lg mt-2">Scan & Pay (UPI)</h3><div class="bg-white p-3 rounded-xl inline-block mt-2 shadow"><img src="kamakya/images/qrcode.png" class="w-36 mx-auto" alt="QR Code"></div><p class="mt-2 font-mono text-maroon text-sm">UPI: Phonepay ID</p></div>
+          <div><input type="text" id="donorName" placeholder="Full Name *" class="w-full p-3 rounded-xl border border-maroon/50 mt-2 text-sm"><input type="tel" id="donorWhatsApp" placeholder="WhatsApp Number *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3 text-sm"><input type="number" id="donationAmount" placeholder="Amount (₹) *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3 text-sm"><select id="donationType" class="w-full p-3 rounded-xl border border-maroon/50 mt-3 text-sm"><option>Annadanam</option><option>Temple Renovation</option></select><input type="text" id="transactionId" placeholder="Transaction ID *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3 text-sm"><button onclick="sendWhatsAppReceipt()" class="btn-maroon w-full mt-4 py-2.5 rounded-full"><i class="fab fa-whatsapp mr-2"></i>Submit & Get Receipt</button></div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="py-24 px-6 bg-maroon-soft">
-      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-        <div><h2 class="text-3xl cinzel maroon-gradient">Visit Shakthipeetam</h2><p class="mt-4"><i class="fas fa-map-marker-alt text-maroon"></i> Mandamarri, Telangana – 504231</p><iframe class="w-full h-64 rounded-xl mt-4" src="https://maps.google.com/maps?q=Mandamarri,+Telangana&z=14&output=embed" allowfullscreen></iframe><div class="flex gap-4 mt-6"><a href="tel:+919618336559" class="btn-maroon px-5 py-2 rounded-full"><i class="fas fa-phone-alt"></i> Call</a><a href="https://wa.me/919618336559" class="border border-maroon px-5 py-2 rounded-full text-maroon"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div>
-        <div class="glass-card p-6"><h3 class="text-2xl cinzel text-maroon">Temple Timings</h3><p>Mon-Sun: <br>6:00 AM – 12:00 PM, <br> 4:00 PM – 8:00 PM</p><hr class="my-4"><i class="fas fa-envelope text-maroon"></i> temple website name</div>
+    <section id="contact" class="py-16 md:py-24 px-5 bg-maroon-soft">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+        <div><h2 class="text-2xl md:text-3xl cinzel maroon-gradient">Visit Shakthipeetam</h2><p class="mt-3 text-sm"><i class="fas fa-map-marker-alt text-maroon"></i> Mandamarri, Telangana – 504231</p><iframe class="w-full h-56 rounded-xl mt-3" src="https://maps.google.com/maps?q=Mandamarri,+Telangana&z=14&output=embed" allowfullscreen></iframe><div class="flex gap-4 mt-4"><a href="tel:+919618336559" class="btn-maroon px-5 py-2 rounded-full text-sm"><i class="fas fa-phone-alt"></i> Call</a><a href="https://wa.me/919618336559" class="border border-maroon px-5 py-2 rounded-full text-maroon text-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div>
+        <div class="glass-card p-6"><h3 class="text-xl md:text-2xl cinzel text-maroon">Temple Timings</h3><p class="mt-2 text-sm">Mon-Sun: <br>6:00 AM – 12:00 PM, <br> 4:00 PM – 8:00 PM</p><hr class="my-3"><i class="fas fa-envelope text-maroon"></i> temple website name</div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-maroon-soft py-12 border-t border-maroon/30">
-      <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-8">
-        <div class="footer-section">
-          <i class="fas fa-om text-3xl text-maroon mb-3"></i>
-          <p class="text-sm font-bold text-maroon">Sri Kamakhya Lalitha<br>Shyamal Varahi<br>Three Shakthipeetam</p>
-          <p class="text-xs text-maroon-dark mt-2">Mandamarri, Telangana<br>504231, India</p>
-        </div>
-        <div class="footer-section">
-          <h3 class="font-bold text-maroon mb-3">Quick Links</h3>
-          <ul class="text-sm text-maroon-dark">
-            <li><a href="#home">Home</a></li><li><a href="#about">About Temple</a></li><li><a href="#deities">Deities</a></li><li><a href="#poojaTimings">Pooja Timings</a></li><li><a href="#templeHead">Temple Head</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#donation">Donate</a></li><li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3 class="font-bold text-maroon mb-3">Contact Info</h3>
-          <ul class="text-sm text-maroon-dark"><li><i class="fas fa-phone-alt text-maroon w-5"></i> <a href="tel:+919618336559">+91 9618336559</a></li><li><i class="fab fa-whatsapp text-maroon w-5"></i> <a href="https://wa.me/919618336559">WhatsApp Chat</a></li><li><i class="fas fa-envelope text-maroon w-5"></i> temple gmail </li></ul>
-        </div>
-        <div class="footer-section"><h3 class="font-bold text-maroon mb-3">Temple Timings</h3><p class="text-sm text-maroon-dark">Morning: 6:00 AM - 12:00 PM</p><p class="text-sm text-maroon-dark">Evening: 4:00 PM - 8:00 PM</p><p class="text-sm text-maroon-dark mt-2">All days open</p></div>
+    <footer class="bg-maroon-soft py-10 border-t border-maroon/30">
+      <div class="max-w-6xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="footer-section"><i class="fas fa-om text-2xl text-maroon mb-2"></i><p class="text-sm font-bold text-maroon">Sri Kamakhya Lalitha<br>Shyamal Varahi<br>Three Shakthipeetam</p><p class="text-xs text-maroon-dark mt-2">Mandamarri, Telangana<br>504231, India</p></div>
+        <div class="footer-section"><h3 class="font-bold text-maroon mb-2 text-sm">Quick Links</h3><ul class="text-xs text-maroon-dark space-y-1"><li><a href="#home">Home</a></li><li><a href="#about">About Temple</a></li><li><a href="#deities">Deities</a></li><li><a href="#poojaTimings">Pooja Timings</a></li><li><a href="#templeHead">Temple Head</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#donation">Donate</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div class="footer-section"><h3 class="font-bold text-maroon mb-2 text-sm">Contact Info</h3><ul class="text-xs text-maroon-dark space-y-1"><li><i class="fas fa-phone-alt text-maroon w-4"></i> <a href="tel:+919618336559">+91 9618336559</a></li><li><i class="fab fa-whatsapp text-maroon w-4"></i> <a href="https://wa.me/919618336559">WhatsApp Chat</a></li><li><i class="fas fa-envelope text-maroon w-4"></i> temple gmail </li></ul></div>
+        <div class="footer-section"><h3 class="font-bold text-maroon mb-2 text-sm">Temple Timings</h3><p class="text-xs text-maroon-dark">Morning: 6:00 AM - 12:00 PM</p><p class="text-xs text-maroon-dark">Evening: 4:00 PM - 8:00 PM</p><p class="text-xs text-maroon-dark mt-1">All days open</p></div>
       </div>
-      <div class="text-center text-xs text-maroon-dark mt-8 pt-4 border-t border-maroon/20"><p>© 2026 Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | All Rights Reserved | Designed with Divine Grace <br> Developed By SVR COMPUTERS, Hanamkonda, Cell No 8500172644</p></div>
+      <div class="text-center text-xs text-maroon-dark mt-8 pt-4 border-t border-maroon/20 px-4"><p>© 2026 Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | All Rights Reserved | Designed with Divine Grace <br> Developed By SVR COMPUTERS, Hanamkonda, Cell No 8500172644</p></div>
     </footer>
   </main>
 
@@ -450,17 +440,16 @@
   <div id="toastMsg" class="toast-notification"></div>
 
   <script>
-    // Floating OM Symbols Generator (visual only)
     function createFloatingOms() {
       const container = document.getElementById('omParticles');
       if(!container) return;
       const symbols = ['🕉️', 'ॐ', 'OM', '🕉️'];
-      for(let i=0; i<35; i++){
+      for(let i=0; i<30; i++){
         let om = document.createElement('div');
         om.className = 'floating-om-symbol';
         om.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
         om.style.left = Math.random() * 100 + '%';
-        om.style.fontSize = (Math.random() * 35 + 15) + 'px';
+        om.style.fontSize = (Math.random() * 28 + 12) + 'px';
         om.style.animationDuration = (Math.random() * 15 + 8) + 's';
         om.style.animationDelay = (Math.random() * 10) + 's';
         om.style.opacity = (Math.random() * 0.15 + 0.05);
@@ -469,25 +458,18 @@
     }
     createFloatingOms();
 
-    // Counter Animation
     function animateCounter(element, target) {
       let current = 0;
-      const increment = Math.ceil(target / 80);
+      const increment = Math.max(1, Math.ceil(target / 70));
       const updateCounter = () => {
         current += increment;
-        if(current < target) {
-          element.innerText = current;
-          requestAnimationFrame(updateCounter);
-        } else {
-          element.innerText = target;
-        }
+        if(current < target) { element.innerText = current; requestAnimationFrame(updateCounter); } 
+        else { element.innerText = target; }
       };
       updateCounter();
     }
-
     function initCounters() {
-      const counterElements = document.querySelectorAll('.counter-number');
-      counterElements.forEach(counter => {
+      document.querySelectorAll('.counter-number').forEach(counter => {
         const target = parseInt(counter.getAttribute('data-target'), 10);
         if(target && !counter.hasAttribute('data-animated')) {
           counter.setAttribute('data-animated', 'true');
@@ -495,28 +477,19 @@
         }
       });
     }
-
     const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          initCounters();
-          counterObserver.unobserve(entry.target);
-        }
-      });
+      entries.forEach(entry => { if(entry.isIntersecting) { initCounters(); counterObserver.unobserve(entry.target); } });
     }, { threshold: 0.3 });
-    
     const heroSection = document.querySelector('#home');
     if(heroSection) counterObserver.observe(heroSection);
-    window.addEventListener('load', () => { setTimeout(initCounters, 500); });
+    window.addEventListener('load', () => { setTimeout(initCounters, 300); });
 
-    // Lightbox
     const lightbox = document.getElementById('lightbox'), lightboxImg = document.getElementById('lightboxImg');
     document.querySelectorAll('.gallery-img').forEach(img => { img.addEventListener('click', () => { lightboxImg.src = img.getAttribute('data-full'); lightbox.classList.add('active'); }); });
     lightbox.onclick = (e) => { if(e.target === lightbox) lightbox.classList.remove('active'); };
     document.querySelector('.lightbox span')?.addEventListener('click', () => lightbox.classList.remove('active'));
 
-    // Donation receipt
-    function sendWhatsAppReceipt() {
+    window.sendWhatsAppReceipt = function() {
       const name = document.getElementById('donorName')?.value;
       const whatsapp = document.getElementById('donorWhatsApp')?.value;
       const amount = document.getElementById('donationAmount')?.value;
@@ -527,31 +500,24 @@
       const receiptMsg = `🙏 *Sri Three Shakthipeetam Donation* 🙏\nReceipt No: ${receiptNo}\nDonor: ${name}\nAmount: ₹${amount}\nPurpose: ${type}\nTxID: ${txId}\nJai Mata Di! 🕉️`;
       window.open(`https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(receiptMsg)}`, '_blank');
       showToast("Receipt sent to WhatsApp");
-    }
+    };
     function showToast(msg) { const t = document.getElementById('toastMsg'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 
-    // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
-    if(menuBtn) {
-      menuBtn.onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
-    }
+    if(menuBtn) menuBtn.onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
     document.querySelectorAll('a[href^="#"]').forEach(anchor => anchor.addEventListener('click', function(e) { 
       e.preventDefault(); 
       const targetId = this.getAttribute('href');
-      if(targetId && targetId !== '#') {
-        const targetElem = document.querySelector(targetId);
-        if(targetElem) targetElem.scrollIntoView({behavior:'smooth'});
-      }
-      if(window.innerWidth<768) document.getElementById('mobileMenu').classList.add('hidden');
+      if(targetId && targetId !== '#') { const targetElem = document.querySelector(targetId); if(targetElem) targetElem.scrollIntoView({behavior:'smooth'}); }
+      if(window.innerWidth<768) document.getElementById('mobileMenu')?.classList.add('hidden');
     }));
     const topBtn = document.getElementById('backToTop'); 
     window.addEventListener('scroll', () => { window.scrollY > 500 ? topBtn.classList.remove('hidden') : topBtn.classList.add('hidden'); }); 
     topBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
     
-    // Scroll reveal
     const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: 0.1 });
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 800, once: true, disable: window.innerWidth < 640 ? true : false });
   </script>
 </body>
 </html>
