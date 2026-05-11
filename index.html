@@ -75,25 +75,34 @@
     .btn-whatsapp-chat { background: #25D366; color: white; }
     .btn-whatsapp-group { background: #128C7E; color: white; }
     .btn-youtube { background: #FF0000; color: white; }
-    .audio-btn { position: fixed; bottom: 25px; left: 20px; z-index: 999; background: linear-gradient(135deg, #6b1a2a, #8b2a3a); backdrop-filter: blur(8px); padding: 14px; border-radius: 50%; cursor: pointer; color: #d4af37; transition: all 0.3s ease; border: 1px solid rgba(212,175,55,0.5); }
-    .audio-btn:hover { transform: scale(1.08); }
-    .audio-btn.playing { box-shadow: 0 0 15px #d4af37; }
-    .hero-om-wrapper { text-align: center; margin-bottom: 1rem; padding: 20px 0; }
+    /* Removed audio-btn styles completely since audio section removed */
+    .hero-om-wrapper { text-align: center; margin-bottom: 0.5rem; padding: 10px 0 0; }
     .hero-om-wrapper .om-text-glow {
-      font-size: 2.5rem;
+      font-size: 0.9rem;
       font-family: 'Cinzel', serif;
       font-weight: bold;
       color: #6b1a2a;
-      text-shadow: 0 0 20px #b8860b, 0 0 40px rgba(184,134,11,0.5);
-      letter-spacing: 4px;
+      text-shadow: 0 0 8px #b8860b;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      display: inline-block;
     }
-    @media (min-width: 768px) { 
-      .hero-om-wrapper .om-text-glow { font-size: 3.5rem; } 
+    /* On smaller screens ensure text fits and wraps if needed */
+    @media (max-width: 480px) {
+      .hero-om-wrapper .om-text-glow {
+        font-size: 0.7rem;
+        white-space: normal;
+        word-break: keep-all;
+        letter-spacing: 1px;
+      }
+    }
+    @media (min-width: 568px) { 
+      .hero-om-wrapper .om-text-glow { font-size: 1rem; } 
     }
     .hero-om-glow { display: inline-block; animation: omPulse 2s infinite ease-in-out; }
     @keyframes omPulse { 
       0% { text-shadow: 0 0 5px #b8860b; transform: scale(1); } 
-      50% { text-shadow: 0 0 30px #b8860b, 0 0 20px #d4af37; transform: scale(1.05); } 
+      50% { text-shadow: 0 0 15px #b8860b, 0 0 10px #d4af37; transform: scale(1.02); } 
       100% { text-shadow: 0 0 5px #b8860b; transform: scale(1); } 
     }
     .toast-notification { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(100px); background: linear-gradient(135deg, #6b1a2a, #8b2a3a); color: #d4af37; padding: 12px 24px; border-radius: 50px; font-weight: 500; z-index: 1000; opacity: 0; transition: all 0.3s ease; pointer-events: none; white-space: nowrap; }
@@ -110,19 +119,42 @@
     .footer-section a { color: #4a0e1a; text-decoration: none; transition: color 0.2s; }
     .footer-section a:hover { color: #b8860b; }
     .devotee-counter-wrapper { display: flex; align-items: baseline; justify-content: center; gap: 4px; }
+    /* Temple Head Square Image - Force square dimensions */
+    .temple-head-img {
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
+      border: 3px solid #d4af37;
+    }
+    @media (min-width: 768px) {
+      .temple-head-img {
+        max-width: 280px;
+      }
+    }
+    /* Mobile nav brand visible fix */
+    .nav-brand-mobile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    @media (max-width: 767px) {
+      .nav-brand-text {
+        font-size: 0.9rem;
+        white-space: normal;
+        line-height: 1.2;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Floating OM Symbols Animation Container -->
+  <!-- Floating OM Symbols Animation Container (Visual only, no audio) -->
   <div id="omParticles"></div>
   
-  <!-- Audio Button with OM Chanting -->
-  <div class="audio-btn" id="audioToggle"><i class="fas fa-om"></i></div>
-  <audio id="bgAudio" loop preload="auto">
-    <!-- Pure OM Chanting Audio - Public Domain OM Mantra -->
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_bb2f1b7c2a.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Removed Audio Button and Audio completely as requested -->
 
   <div class="floating-social">
     <a href="https://wa.me/919618336559?text=Jai%20Mata%20Di!" target="_blank" class="social-btn btn-whatsapp-chat"><i class="fab fa-whatsapp"></i></a>
@@ -135,7 +167,10 @@
   <!-- Navigation -->
   <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-lg border-b border-maroon/20 py-2 px-5 shadow-sm">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-3"><i class="fas fa-om text-2xl md:text-3xl text-maroon"></i><span class="cinzel text-lg md:text-xl font-bold gold-gradient hidden md:inline-block">Shakthipeetam</span></div>
+      <div class="flex items-center gap-2">
+        <i class="fas fa-om text-2xl md:text-3xl text-maroon"></i>
+        <span class="cinzel text-base md:text-xl font-bold gold-gradient nav-brand-text">Shakthipeetam</span>
+      </div>
       <div class="datetime-header" id="liveDateTime"></div>
       <div class="hidden md:flex gap-6 text-sm font-medium text-maroon-dark">
         <a href="#home">Home</a><a href="#about">About</a><a href="#deities">Deities</a><a href="#poojaTimings">Pooja Timings</a><a href="#templeHead">Temple Head</a><a href="#gallery">Gallery</a><a href="#youtubeVideo">Video</a><a href="#bookingSection">Bookings</a><a href="#donation">Donate</a><a href="#contact">Contact</a>
@@ -148,7 +183,7 @@
   </nav>
 
   <main>
-    <!-- Hero Section with OM Sri Matre Namaha Text -->
+    <!-- Hero Section with OM Sri Matre Namaha Text (Small size, fully visible) -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <video autoplay muted loop playsinline class="hero-video"><source src="https://cdn.coverr.co/videos/coverr-temple-candles-5781/1080p.mp4" type="video/mp4"></video>
       <div class="hero-overlay"></div>
@@ -248,16 +283,16 @@
       </div>
     </section>
 
-    <!-- Temple Head Section -->
+    <!-- Temple Head Section with Square Image -->
     <section id="templeHead" class="py-24 px-6 bg-white">
       <div class="max-w-5xl mx-auto">
         <h2 class="text-4xl cinzel text-center maroon-gradient mb-12 scroll-reveal">Temple Head</h2>
         <div class="flex flex-col md:flex-row items-center gap-12 glass-card p-8 rounded-3xl scroll-reveal">
-          <div class="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-gold shadow-2xl">
-            <img src="kamakya/images/sathish.jpg" class="w-full h-full object-cover" alt="Temple Head">
+          <div class="w-64 h-64 md:w-72 md:h-72 shrink-0">
+            <img src="kamakya/images/sathish.jpg" class="temple-head-img w-full h-full object-cover" alt="Temple Head">
           </div>
           <div class="text-center md:text-left">
-            <h3 class="text-3xl cinzel text-maroon">Sri Yogi Sathish Garu</h3>
+            <h3 class="text-3xl cinzel text-maroon">Sri Yogi Rajanatha Sastry</h3>
             <p class="text-gold font-semibold text-xl mt-1">Chief Priest & Spiritual Director</p>
             <div class="w-20 h-1 bg-gold my-4 mx-auto md:mx-0"></div>
             <p class="text-maroon-dark leading-relaxed max-w-lg">With over 30 years of devotion and Vedic scholarship, Sri Yogi Rajanatha revived the Three Shakthipeetam tradition in Mandamarri. He leads the Sri Vidya upasana, conducts powerful homams and guides countless devotees on the path of Shakti worship.</p>
@@ -275,21 +310,16 @@
       <div class="max-w-7xl mx-auto"><h2 class="text-4xl cinzel text-center maroon-gradient mb-12">Gallery</h2>
         <div class="columns-1 sm:columns-2 md:columns-3 gap-5 space-y-5">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/guru.jpg?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800">
-
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal7.webp?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal1.webp?w=400" data-full="https://images.unsplash.com/photo-1599566746534-8e678cd4fa27?w=800">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal2.webp?w=400" data-full="https://images.unsplash.com/photo-1603398938378-e54eab4463aa?w=800">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal3.webp?w=400" data-full="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal4.webp?w=400" data-full="https://images.unsplash.com/photo-1582653291997-079a1b04b6d3?w=800">
           <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal5.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
-
-<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal6.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
-
-<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal8.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
-
-<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal9.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
-
-<img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal10.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal6.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal8.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal9.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal10.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
         </div>
       </div>
     </section>
@@ -300,7 +330,7 @@
         <h2 class="text-4xl cinzel text-center maroon-gradient mb-8 scroll-reveal">Divine Temple Video</h2>
         <div class="scroll-reveal shadow-2xl rounded-3xl overflow-hidden">
           <div class="relative pb-[56.25%] h-0">
-            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/watch?v=jH4iPkIklSo" title="Temple Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/jH4iPkIklSo" title="Temple Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
         <p class="mt-5 text-maroon-dark text-lg font-medium">Temple Video</p>
@@ -378,7 +408,7 @@
   <div id="toastMsg" class="toast-notification"></div>
 
   <script>
-    // Floating OM Symbols Generator
+    // Floating OM Symbols Generator (visual only)
     function createFloatingOms() {
       const container = document.getElementById('omParticles');
       if(!container) return;
@@ -406,7 +436,7 @@
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
-    // Counter Animation Function - Fixed for Devotee Counter
+    // Counter Animation
     function animateCounter(element, target) {
       let current = 0;
       const increment = Math.ceil(target / 80);
@@ -422,7 +452,6 @@
       updateCounter();
     }
 
-    // Initialize all counters when in viewport
     function initCounters() {
       const counterElements = document.querySelectorAll('.counter-number');
       counterElements.forEach(counter => {
@@ -434,7 +463,6 @@
       });
     }
 
-    // Trigger counters when section comes into view
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting) {
@@ -446,8 +474,6 @@
     
     const heroSection = document.querySelector('#home');
     if(heroSection) counterObserver.observe(heroSection);
-    
-    // Fallback: also trigger on load after a short delay
     window.addEventListener('load', () => { setTimeout(initCounters, 500); });
 
     // Lightbox
@@ -472,43 +498,25 @@
     function showToast(msg) { const t = document.getElementById('toastMsg'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 
     // Mobile menu
-    document.getElementById('menuBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => anchor.addEventListener('click', function(e) { e.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'}); if(window.innerWidth<768) document.getElementById('mobileMenu').classList.add('hidden'); }));
-    const topBtn = document.getElementById('backToTop'); window.addEventListener('scroll', () => { window.scrollY > 500 ? topBtn.classList.remove('hidden') : topBtn.classList.add('hidden'); }); topBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
-    
-    // OM Chanting Audio - Pure OM sound
-    let audioPlaying = false;
-    const audio = document.getElementById('bgAudio');
-    const audioBtn = document.getElementById('audioToggle');
-    
-    function playOMAudio() {
-      audio.play().then(() => {
-        audioPlaying = true;
-        audioBtn.classList.add('playing');
-        audioBtn.innerHTML = '<i class="fas fa-om"></i><span style="font-size:8px;position:absolute;bottom:-5px;right:-5px;">🔊</span>';
-      }).catch(err => { console.log("Audio play requires user interaction:", err); showToast("Click again to play OM chanting"); });
+    const menuBtn = document.getElementById('menuBtn');
+    if(menuBtn) {
+      menuBtn.onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
     }
-    
-    function pauseOMAudio() {
-      audio.pause();
-      audioPlaying = false;
-      audioBtn.classList.remove('playing');
-      audioBtn.innerHTML = '<i class="fas fa-om"></i>';
-    }
-    
-    audioBtn.onclick = (e) => {
-      e.stopPropagation();
-      if (audioPlaying) {
-        pauseOMAudio();
-      } else {
-        playOMAudio();
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => anchor.addEventListener('click', function(e) { 
+      e.preventDefault(); 
+      const targetId = this.getAttribute('href');
+      if(targetId && targetId !== '#') {
+        const targetElem = document.querySelector(targetId);
+        if(targetElem) targetElem.scrollIntoView({behavior:'smooth'});
       }
-    };
+      if(window.innerWidth<768) document.getElementById('mobileMenu').classList.add('hidden');
+    }));
+    const topBtn = document.getElementById('backToTop'); 
+    window.addEventListener('scroll', () => { window.scrollY > 500 ? topBtn.classList.remove('hidden') : topBtn.classList.add('hidden'); }); 
+    topBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
     
-    audio.loop = true;
-    audio.volume = 0.5;
-    audio.load();
-    
+    // Audio section completely removed per requirement
+
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: 0.1 });
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
