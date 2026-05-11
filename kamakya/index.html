@@ -76,28 +76,35 @@
     .btn-whatsapp-group { background: #128C7E; color: white; }
     .btn-youtube { background: #FF0000; color: white; }
     /* Removed audio-btn styles completely since audio section removed */
-    .hero-om-wrapper { text-align: center; margin-bottom: 0.5rem; padding: 10px 0 0; }
+    .hero-om-wrapper { 
+      text-align: center; 
+      margin-bottom: 1.25rem; 
+      padding: 0; 
+    }
     .hero-om-wrapper .om-text-glow {
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-family: 'Cinzel', serif;
       font-weight: bold;
       color: #6b1a2a;
-      text-shadow: 0 0 8px #b8860b;
+      text-shadow: 0 0 8px rgba(184,134,11,0.6);
       letter-spacing: 2px;
       white-space: nowrap;
       display: inline-block;
     }
-    /* On smaller screens ensure text fits and wraps if needed */
-    @media (max-width: 480px) {
+    /* Mobile adjustments for OM text */
+    @media (max-width: 640px) {
       .hero-om-wrapper .om-text-glow {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         white-space: normal;
         word-break: keep-all;
         letter-spacing: 1px;
       }
+      .hero-om-wrapper {
+        margin-bottom: 0.75rem;
+      }
     }
-    @media (min-width: 568px) { 
-      .hero-om-wrapper .om-text-glow { font-size: 1rem; } 
+    @media (min-width: 768px) { 
+      .hero-om-wrapper .om-text-glow { font-size: 1.1rem; } 
     }
     .hero-om-glow { display: inline-block; animation: omPulse 2s infinite ease-in-out; }
     @keyframes omPulse { 
@@ -112,7 +119,7 @@
     .booking-card { transition: all 0.3s; }
     .booking-card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(107,26,42,0.2); }
     .datetime-header { font-family: 'Inter', monospace; letter-spacing: 0.5px; background: rgba(107,26,42,0.08); backdrop-filter: blur(4px); border-radius: 60px; padding: 6px 16px; display: inline-block; font-size: 0.85rem; font-weight: 500; }
-    @media (max-width: 640px) { .counter-number { font-size: 2rem; } .datetime-header { font-size: 0.7rem; padding: 4px 12px; } }
+    @media (max-width: 640px) { .counter-number { font-size: 2rem; } }
     .footer-section { text-align: left; }
     .footer-section ul { padding-left: 0; list-style: none; }
     .footer-section li { margin-bottom: 8px; }
@@ -147,6 +154,36 @@
         line-height: 1.2;
       }
     }
+    /* New style for OM text under navbar (subtle decorative) */
+    .sub-nav-om {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: #6b1a2a;
+      font-weight: 500;
+      margin-top: 2px;
+      font-family: 'Cinzel', serif;
+    }
+    @media (min-width: 768px) {
+      .sub-nav-om {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+      }
+    }
+    /* Ensure hero main headings are fully visible */
+    #home .container {
+      padding-top: 5rem;
+      padding-bottom: 2rem;
+    }
+    @media (max-width: 768px) {
+      #home .container {
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+      }
+      h1, h2 {
+        line-height: 1.2;
+      }
+    }
   </style>
 </head>
 <body>
@@ -164,14 +201,18 @@
 
   <button id="backToTop" class="fixed bottom-6 right-24 z-50 bg-maroon text-white rounded-full p-3 shadow-xl hidden transition-all"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- Navigation -->
+  <!-- Navigation - Date and Time REMOVED as requested -->
   <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-lg border-b border-maroon/20 py-2 px-5 shadow-sm">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-2">
-        <i class="fas fa-om text-2xl md:text-3xl text-maroon"></i>
-        <span class="cinzel text-base md:text-xl font-bold gold-gradient nav-brand-text">Shakthipeetam</span>
+      <div class="flex flex-col items-start">
+        <div class="flex items-center gap-2">
+          <i class="fas fa-om text-2xl md:text-3xl text-maroon"></i>
+          <span class="cinzel text-base md:text-xl font-bold gold-gradient nav-brand-text">Shakthipeetam</span>
+        </div>
+        <!-- Added OM SREE MATRE NAMAHA right below brand with maroon color, same alignment -->
+        <span class="sub-nav-om">🕉️ Om Sree Matre Namaha 🕉️</span>
       </div>
-      <div class="datetime-header" id="liveDateTime"></div>
+      <!-- Removed datetime-header div completely -->
       <div class="hidden md:flex gap-6 text-sm font-medium text-maroon-dark">
         <a href="#home">Home</a><a href="#about">About</a><a href="#deities">Deities</a><a href="#poojaTimings">Pooja Timings</a><a href="#templeHead">Temple Head</a><a href="#gallery">Gallery</a><a href="#youtubeVideo">Video</a><a href="#bookingSection">Bookings</a><a href="#donation">Donate</a><a href="#contact">Contact</a>
       </div>
@@ -183,18 +224,19 @@
   </nav>
 
   <main>
-    <!-- Hero Section with OM Sri Matre Namaha Text (Small size, fully visible) -->
+    <!-- Hero Section - Improved visibility for top heading (no cutoff) -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <video autoplay muted loop playsinline class="hero-video"><source src="https://cdn.coverr.co/videos/coverr-temple-candles-5781/1080p.mp4" type="video/mp4"></video>
       <div class="hero-overlay"></div>
       <div class="container mx-auto px-6 text-center relative z-10">
+        <!-- Om Sree Matre Namaha already present here, but keeping consistency, now headings fully visible with extra padding -->
         <div class="hero-om-wrapper">
           <div class="hero-om-glow">
-            <div class="om-text-glow">🕉️ Om Sri Matre Namaha 🕉️</div>
+            <div class="om-text-glow">🕉️ Om Sree Matre Namaha 🕉️</div>
           </div>
         </div>
-        <h1 class="text-3xl md:text-5xl font-bold maroon-gradient">Sri Kamakhya Lalitha Shyamal Varahi</h1>
-        <h2 class="text-3xl md:text-5xl font-bold gold-gradient mt-2">Three Shakthipeetam</h2>
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold maroon-gradient leading-tight">Sri Kamakhya Lalitha Shyamal Varahi</h1>
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold gold-gradient mt-2 leading-tight">Three Shakthipeetam</h2>
         <p class="text-xl md:text-2xl text-maroon-dark/80 mt-4 max-w-2xl mx-auto">Divine Abode • Mandamarri, Telangana – 504231</p>
         <div class="flex flex-wrap justify-center gap-5 mt-10">
           <a href="#bookingSection" class="btn-maroon px-8 py-3 rounded-full shadow-lg inline-block"><i class="fas fa-hand-sparkles mr-2"></i>Book Pooja</a>
@@ -217,7 +259,7 @@
     <section id="about" class="py-24 px-6 bg-maroon-soft">
       <div class="max-w-7xl mx-auto"><h2 class="text-4xl md:text-5xl cinzel text-center maroon-gradient mb-16 scroll-reveal">Sacred Three Shakthipeetam</h2>
         <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="scroll-reveal"><img src="kamakya/images/1.webp?w=600" class="rounded-2xl shadow-2xl w-full object-cover"></div>
+          <div class="scroll-reveal"><img src="kamakya/images/1.webp?w=600" class="rounded-2xl shadow-2xl w-full object-cover" alt="Temple"></div>
           <div class="scroll-reveal space-y-5"><p class="text-maroon-dark leading-relaxed">Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam in Mandamarri is a radiant Trishakti center. Three divine goddesses grace this sacred land: Kamakhya (desire), Lalitha (beauty), and Varahi (command).</p>
           <div class="space-y-4 mt-6 relative pl-6 border-l-2 border-maroon"><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Kamakhya Devi</span><p class="text-sm">Yoni Peetha, bestows fertility and moksha</p></div><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Lalitha Devi</span><p class="text-sm">Mahatripurasundari, Sri Chakra worship</p></div><div><div class="timeline-dot"></div><span class="font-bold text-maroon">Sri Shyamal Varahi</span><p class="text-sm">Boar-faced deity, removes obstacles</p></div></div>
           <p class="italic text-maroon border-t border-maroon/30 pt-4">"Revive ancient Shakti traditions" – Founder Sri Yogi Sathish Guruji</p></div>
@@ -230,17 +272,17 @@
       <div class="max-w-7xl mx-auto"><h2 class="text-4xl cinzel text-center maroon-gradient mb-14 scroll-reveal">The Divine Three Shakthipeetam</h2>
         <div class="grid md:grid-cols-3 gap-8">
           <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
-            <img src="kamakya/images/Lalitha Devi.webp?w=500" class="square-img shadow-lg">
+            <img src="kamakya/images/Lalitha Devi.webp?w=500" class="square-img shadow-lg" alt="Sri Lalitha Devi">
             <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Lalitha Devi</h3>
             <p class="text-sm px-2">Yoni Peetha, bestows fertility & moksha</p>
           </div>
           <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
-            <img src="kamakya/images/shyamala devi.webp?w=500" class="square-img shadow-lg">
+            <img src="kamakya/images/shyamala devi.webp?w=500" class="square-img shadow-lg" alt="Sri Shyamala Devi">
             <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Shyamala Devi</h3>
             <p class="text-sm px-2">Mahatripurasundari, Sri Chakra worship</p>
           </div>
           <div class="glass-card p-4 rounded-3xl text-center transition scroll-reveal shadow-md">
-            <img src="kamakya/images/varahi devi1.webp?w=500" class="square-img shadow-lg">
+            <img src="kamakya/images/varahi devi1.webp?w=500" class="square-img shadow-lg" alt="Sri Varahi Devi">
             <h3 class="text-2xl cinzel mt-5 text-maroon">Sri Varahi Devi</h3>
             <p class="text-sm px-2">Boar-faced deity, removes obstacles</p>
           </div>
@@ -289,7 +331,7 @@
         <h2 class="text-4xl cinzel text-center maroon-gradient mb-12 scroll-reveal">Temple Head</h2>
         <div class="flex flex-col md:flex-row items-center gap-12 glass-card p-8 rounded-3xl scroll-reveal">
           <div class="w-64 h-64 md:w-72 md:h-72 shrink-0">
-            <img src="kamakya/images/sathish.jpg" class="temple-head-img w-full h-full object-cover" alt="Temple Head">
+            <img src="kamakya/images/sathish.jpg" class="temple-head-img w-full h-full object-cover" alt="Temple Head Sri Yogi Sathish Guruji">
           </div>
           <div class="text-center md:text-left">
             <h3 class="text-3xl cinzel text-maroon">Sri Yogi Sathish Guruji</h3>
@@ -306,20 +348,20 @@
     </section>
 
     <!-- Gallery Section -->
-   <section id="gallery" class="py-24 px-6 bg-maroon-soft">
+    <section id="gallery" class="py-24 px-6 bg-maroon-soft">
       <div class="max-w-7xl mx-auto"><h2 class="text-4xl cinzel text-center maroon-gradient mb-12">Gallery</h2>
         <div class="columns-1 sm:columns-2 md:columns-3 gap-5 space-y-5">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/guru.jpg?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal7.webp?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal1.webp?w=400" data-full="https://images.unsplash.com/photo-1599566746534-8e678cd4fa27?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal2.webp?w=400" data-full="https://images.unsplash.com/photo-1603398938378-e54eab4463aa?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal3.webp?w=400" data-full="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal4.webp?w=400" data-full="https://images.unsplash.com/photo-1582653291997-079a1b04b6d3?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal5.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal6.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal8.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal9.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
-          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal10.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/guru.jpg?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal7.webp?w=400" data-full="https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal1.webp?w=400" data-full="https://images.unsplash.com/photo-1599566746534-8e678cd4fa27?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal2.webp?w=400" data-full="https://images.unsplash.com/photo-1603398938378-e54eab4463aa?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal3.webp?w=400" data-full="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal4.webp?w=400" data-full="https://images.unsplash.com/photo-1582653291997-079a1b04b6d3?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal5.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal6.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal8.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal9.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800" alt="Gallery img">
+          <img class="rounded-2xl w-full cursor-pointer gallery-img shadow-md" src="kamakya/images/gal10.webp?w=400" data-full="https://images.unsplash.com/photo-1612196156268-2c479702fe5d?w=800" alt="Gallery img">
         </div>
       </div>
     </section>
@@ -367,7 +409,7 @@
         <h2 class="text-3xl cinzel text-center maroon-gradient">Support the Sacred Mission</h2>
         <p class="text-center text-maroon-dark mt-2">🙏 Donate via UPI • Get Receipt on WhatsApp</p>
         <div class="grid md:grid-cols-2 gap-8 mt-6">
-          <div class="text-center"><i class="fas fa-qrcode text-6xl text-maroon"></i><h3 class="text-xl mt-2">Scan & Pay (UPI)</h3><div class="bg-white p-4 rounded-xl inline-block mt-3 shadow"><img src="kamakya/images/qrcode.png" class="w-48 mx-auto"></div><p class="mt-3 font-mono text-maroon">UPI: Phonepay ID</p></div>
+          <div class="text-center"><i class="fas fa-qrcode text-6xl text-maroon"></i><h3 class="text-xl mt-2">Scan & Pay (UPI)</h3><div class="bg-white p-4 rounded-xl inline-block mt-3 shadow"><img src="kamakya/images/qrcode.png" class="w-48 mx-auto" alt="QR Code"></div><p class="mt-3 font-mono text-maroon">UPI: Phonepay ID</p></div>
           <div><input type="text" id="donorName" placeholder="Full Name *" class="w-full p-3 rounded-xl border border-maroon/50 mt-2"><input type="tel" id="donorWhatsApp" placeholder="WhatsApp Number *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><input type="number" id="donationAmount" placeholder="Amount (₹) *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><select id="donationType" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><option>Annadanam</option><option>Temple Renovation</option></select><input type="text" id="transactionId" placeholder="Transaction ID *" class="w-full p-3 rounded-xl border border-maroon/50 mt-3"><button onclick="sendWhatsAppReceipt()" class="btn-maroon w-full mt-5 py-2 rounded-full"><i class="fab fa-whatsapp mr-2"></i>Submit & Get Receipt</button></div>
         </div>
       </div>
@@ -400,7 +442,7 @@
         </div>
         <div class="footer-section"><h3 class="font-bold text-maroon mb-3">Temple Timings</h3><p class="text-sm text-maroon-dark">Morning: 6:00 AM - 12:00 PM</p><p class="text-sm text-maroon-dark">Evening: 4:00 PM - 8:00 PM</p><p class="text-sm text-maroon-dark mt-2">All days open</p></div>
       </div>
-      <div class="text-center text-xs text-maroon-dark mt-8 pt-4 border-t border-maroon/20"><p>© 2025 Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | All Rights Reserved</p></div>
+      <div class="text-center text-xs text-maroon-dark mt-8 pt-4 border-t border-maroon/20"><p>© 2026 Sri Kamakhya Lalitha Shyamal Varahi Shakthipeetam | All Rights Reserved | Designed with Divine Grace <br> Developed By SVR COMPUTERS, Hanamkonda, Cell No 8500172644</p></div>
     </footer>
   </main>
 
@@ -426,15 +468,6 @@
       }
     }
     createFloatingOms();
-
-    // Real-time Date & Time
-    function updateDateTime() {
-      const now = new Date();
-      const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-      document.getElementById('liveDateTime').innerHTML = `<i class="far fa-calendar-alt mr-1"></i> ${now.toLocaleString('en-IN', options)}`;
-    }
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
 
     // Counter Animation
     function animateCounter(element, target) {
@@ -515,8 +548,6 @@
     window.addEventListener('scroll', () => { window.scrollY > 500 ? topBtn.classList.remove('hidden') : topBtn.classList.add('hidden'); }); 
     topBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
     
-    // Audio section completely removed per requirement
-
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: 0.1 });
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
